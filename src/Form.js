@@ -25,7 +25,7 @@ function Form(props){
   return(
     <div>
       <Input 
-        type="text" 
+        type="text"
         name="name" 
         placeholder="Enter Your Name" 
         onChange={(e) => handleChange(e,"name")} 
@@ -51,4 +51,4 @@ function Form(props){
 
 }
 
-export default Form
+export default Form;
