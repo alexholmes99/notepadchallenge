@@ -5,7 +5,8 @@ import TextArea from "./TextArea";
 
 function App() {
   const [formData, setFormData] = useState({
-    name: ""
+    name: "",
+    note: ""
   })
 
   const handleChange = e => {
@@ -17,7 +18,7 @@ function App() {
 
   const handleBlur = e => {
     if(formData.name == ""){
-      alert("Field is required")
+      alert(e.target.name + " is required")
     }
   }
 
@@ -30,7 +31,13 @@ function App() {
         onChange={handleChange} 
         onBlur={handleBlur}
       />
-      <TextArea />
+      <TextArea
+        name="note"
+        placeholder="Enter Note Here"
+        value={formData.note}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
     </div>
   );
 
