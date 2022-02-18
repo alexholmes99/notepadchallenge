@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import './App.css';
 import Input from "./Input";
+import TextArea from "./TextArea";
 
 function App() {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ function App() {
         onChange={handleChange} 
         onBlur={handleBlur}
       />
-
+      <TextArea />
     </div>
   );
 
