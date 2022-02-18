@@ -9,15 +9,15 @@ function App() {
     note: ""
   })
 
-  const handleChange = e => {
+  const handleChange = (e, key) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [key]: e.target.value,
     })
   }
 
   const handleBlur = e => {
-    if(formData.name == ""){
+    if(e.target.value == ""){
       alert(e.target.name + " is required")
     }
   }
@@ -28,7 +28,7 @@ function App() {
         type="text" 
         name="name" 
         placeholder="Enter Your Name" 
-        onChange={handleChange} 
+        onChange={(e) => handleChange(e, "name")} 
         onBlur={handleBlur}
       />
       <TextArea
