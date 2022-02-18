@@ -12,6 +12,6 @@ function Input(props){
         onBlur={props.onBlur}
       />
   )
-}
+};
 
 export default Input;
