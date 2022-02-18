@@ -4,7 +4,8 @@ import Input from "./Input";
 
 function App() {
   const [formData, setFormData] = useState({
-    name: ""
+    name: "",
+    message: ""
   })
 
   const handleChange = e => {
@@ -25,7 +26,8 @@ function App() {
       <Input 
         type="text" 
         name="name" 
-        placeholder="Enter Your Name" 
+        placeholder="Enter Your Name"
+        value={formData.name}
         onChange={handleChange} 
         onBlur={handleBlur}
       />
