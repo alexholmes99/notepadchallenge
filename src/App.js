@@ -8,14 +8,14 @@ function App() {
     message: ""
   })
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     })
   }
 
-  const handleBlur = e => {
+  const handleBlur = (e) => {
     if(formData.name == ""){
       alert("Field is required")
     }
