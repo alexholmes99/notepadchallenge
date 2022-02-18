@@ -1,43 +1,14 @@
-import React, {useState} from "react"
+import React from "react"
 import './App.css';
 import Input from "./Input";
 import TextArea from "./TextArea";
+import Form from "./Form";
 
 function App() {
-  const [formData, setFormData] = useState({
-    name: "",
-    note: ""
-  })
-
-  const handleChange = e => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleBlur = e => {
-    if(formData.name == ""){
-      alert(e.target.name + " is required")
-    }
-  }
 
   return (
     <div className="App">
-      <Input 
-        type="text" 
-        name="name" 
-        placeholder="Enter Your Name" 
-        onChange={handleChange} 
-        onBlur={handleBlur}
-      />
-      <TextArea
-        name="note"
-        placeholder="Enter Note Here"
-        value={formData.note}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
+      <Form />
     </div>
   );
 
