@@ -8,11 +8,12 @@ function App() {
     message: ""
   })
 
-  const handleChange = (e) => {
-    setFormData({
+  const handleChange = (e, key) => {
+    const newData={
       ...formData,
-      [e.target.name]: e.target.value,
-    })
+      [key]: e.target.value
+    }
+    setFormData(newData)
   }
 
   const handleBlur = (e) => {
@@ -28,7 +29,7 @@ function App() {
         name="name" 
         placeholder="Enter Your Name"
         value={formData.name}
-        onChange={handleChange} 
+        onChange={(e) => handleChange(e, "name")} 
         onBlur={handleBlur}
       />
 
