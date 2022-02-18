@@ -17,7 +17,7 @@ function Form(props){
   }
 
   const handleBlur = e => {
-    if(formData.name == ""){
+    if(e.target.value == ""){
       alert(e.target.name + " is required")
     }
   }
@@ -28,7 +28,7 @@ function Form(props){
         type="text" 
         name="name" 
         placeholder="Enter Your Name" 
-        onChange={handleChange} 
+        onChange={(e) => handleChange(e,"name")} 
         onBlur={handleBlur}
       />
       <Input
@@ -36,16 +36,16 @@ function Form(props){
         name="date"
         placeholder=""
         value={formData.date}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e,"date")}
         onBlur={handleBlur}
       />
-    <TextArea
-      name="note"
-      placeholder="Enter Note Here"
-      value={formData.note}
-      onChange={handleChange}
-      onBlur={handleBlur}
-    />
+      <TextArea
+        name="note"
+        placeholder="Enter Note Here"
+        value={formData.note}
+        onChange={(e) => handleChange(e,"note")}
+        onBlur={handleBlur}
+      />
     </div>
   )
 
