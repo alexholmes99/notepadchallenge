@@ -16,6 +16,7 @@ const StyledInput = styled.input`
   background-color: ;
   font-size: 25px;
   font-family: "Noto Sans", sans-serif;
+  box-shadow: 1px 2px;
 `;
 
 export default Input;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import styled from "styled-components";
+import Logo from "./Logo";
 
 function Form(props) {
   const [formData, setFormData] = useState({
@@ -72,10 +73,10 @@ function Form(props) {
 
 const OuterForm = styled.div`
   display: flex;
-  margin-top: 4%;
-  align-items: center;
   flex-direction: column;
-  padding: 10px;
+  align-items: center;
+  text-align: center;
+  margin-top: 2%;
   postion: relative;
 `;
 
@@ -83,7 +84,8 @@ const FormContent = styled.div`
   font-size: 12px;
   font-family: "Open Sans", sans-serif;
   color: #e33d3d;
-  padding: 20px;
+  padding: 10px;
+  margin: 0%;
 `;
 
 export default Form;

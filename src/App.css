@@ -38,7 +38,8 @@
 }
 
 body {
-  background-color: #f9f5de;
+  background-image: url("./background.jpg");
+  background-size: cover;
 }
 
 /* Open Sans */
