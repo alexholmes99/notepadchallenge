@@ -75,7 +75,7 @@ function Form(props) {
   );
 }
 
-const OuterForm = styled.div`
+const OuterForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,7 +86,7 @@ const OuterForm = styled.div`
 
 const FormContent = styled.div`
   font-size: 12px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Sue Ellen Francisco", cursive;
   color: #e33d3d;
   padding: 10px;
   margin: 0%;

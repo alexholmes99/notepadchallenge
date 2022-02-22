@@ -12,6 +12,7 @@ function Input(props) {
     />
   );
 }
+
 const StyledInput = styled.input`
   margin-top: 2%;
   background-color: #f5f4f2;

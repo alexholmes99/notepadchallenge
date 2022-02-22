@@ -2,17 +2,24 @@ import React from "react";
 import Form from "./Form";
 import Logo from "./Logo";
 import styled from "styled-components";
-import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <div className="Logo">
+    <AppDiv>
+      <LogoDiv>
         <Logo />
-      </div>
+      </LogoDiv>
       <Form />
-    </div>
+    </AppDiv>
   );
 }
+
+const LogoDiv = styled.div`
+  margin-bottom: none;
+`;
+
+const AppDiv = styled.div`
+  text-align: center;
+`;
 
 export default App;

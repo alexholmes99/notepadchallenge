@@ -17,4 +17,5 @@ const StyledButton = styled.button`
   width: 100%;
   font-family: "Sue Ellen Francisco", cursive;
 `;
+
 export default Button;

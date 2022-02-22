@@ -20,4 +20,5 @@ const StyledText = styled.textarea`
   font-family: "Sue Ellen Francisco", cursive;
   border: none;
 `;
+
 export default TextArea;
