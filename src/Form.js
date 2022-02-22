@@ -82,6 +82,6 @@ const OuterForm = styled.div`
 `;
 
 const FormContent = styled.div`
-  padding: 30px;
   color: black;
+  padding: 12px;
 `;

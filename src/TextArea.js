@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 
 function TextArea(props) {
   return (
-    <textarea
-      style={{ fontSize: "15px" }}
+    <StyledText
       name={props.name}
       placeholder={props.placeholder}
       value={props.value}
@@ -13,4 +13,7 @@ function TextArea(props) {
   );
 }
 
+const StyledText = styled.textarea`
+  font-size: 25px;
+`;
 export default TextArea;
