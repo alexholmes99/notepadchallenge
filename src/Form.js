@@ -10,47 +10,60 @@ function Form(props) {
     note: "",
   });
 
-  const handleChange = (e) => {
-    setFormData({
+  const [emptyData, setEmptyData] = useState({
+    name: false,
+    date: false,
+    note: false,
+  });
+
+  const handleChange = (e, key) => {
+    const newData = {
       ...formData,
-      [e.target.name]: e.target.value,
-    });
+      [key]: e.target.value,
+    };
+    setFormData(newData);
   };
 
-  const handleBlur = (e) => {
-    if (e.target.value == "") {
-      alert(e.target.name + " is required");
-    }
+  const handleBlur = (value, key) => {
+    setEmptyData((previousState) => {
+      return {
+        ...previousState,
+        [key]: value === "",
+      };
+    });
   };
 
   return (
     <InnerForm>
       <Element>
+        {emptyData.name && <h2>Name required</h2>}
         <Input
           type="text"
           name="name"
           placeholder="Enter Your Name"
           onChange={(e) => handleChange(e, "name")}
-          onBlur={handleBlur}
+          onBlur={(e) => handleBlur(e.target.value, "name")}
         />
       </Element>
       <Element>
+        {emptyData.date && <h2>Date Required</h2>}
         <Input
           type="date"
           name="date"
           placeholder=""
           value={formData.date}
           onChange={(e) => handleChange(e, "date")}
-          onBlur={handleBlur}
+          onBlur={(e) => handleBlur(e.target.value, "date")}
         />
       </Element>
       <Element>
+        {emptyData.note && <h2>Note Required</h2>}
         <TextArea
           name="note"
           placeholder="Enter Note Here"
           value={formData.note}
           onChange={(e) => handleChange(e, "note")}
-          onBlur={handleBlur}
+          onBlur={(e) => handleBlur(e.target.value, "note")}
         />
       </Element>
     </InnerForm>
