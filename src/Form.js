@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import TextArea from "./TextArea";
+import Button from "./Button";
 import styled from "styled-components";
 import Logo from "./Logo";
 
@@ -66,6 +67,9 @@ function Form(props) {
           onChange={(e) => handleChange(e, "note")}
           onBlur={(e) => handleBlur(e.target.value, "note")}
         />
+      </FormContent>
+      <FormContent>
+        <Button content="Submit" type="Submit" value="Submit" />
       </FormContent>
     </OuterForm>
   );
