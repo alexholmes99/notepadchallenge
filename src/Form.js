@@ -34,8 +34,8 @@ function Form(props) {
   };
 
   return (
-    <InnerForm>
-      <Element>
+    <OuterForm>
+      <FormContent>
         {emptyData.name && <h2>Name required</h2>}
         <Input
           type="text"
@@ -44,8 +44,8 @@ function Form(props) {
           onChange={(e) => handleChange(e, "name")}
           onBlur={(e) => handleBlur(e.target.value, "name")}
         />
-      </Element>
-      <Element>
+      </FormContent>
+      <FormContent>
         {emptyData.date && <h2>Date Required</h2>}
         <Input
           type="date"
@@ -55,8 +55,8 @@ function Form(props) {
           onChange={(e) => handleChange(e, "date")}
           onBlur={(e) => handleBlur(e.target.value, "date")}
         />
-      </Element>
-      <Element>
+      </FormContent>
+      <FormContent>
         {emptyData.note && <h2>Note Required</h2>}
         <TextArea
           name="note"
@@ -65,14 +65,14 @@ function Form(props) {
           onChange={(e) => handleChange(e, "note")}
           onBlur={(e) => handleBlur(e.target.value, "note")}
         />
-      </Element>
-    </InnerForm>
+      </FormContent>
+    </OuterForm>
   );
 }
 
 export default Form;
 
-const InnerForm = styled.div`
+const OuterForm = styled.div`
   display: flex;
   margin-top: 10%;
   align-items: center;
@@ -81,6 +81,7 @@ const InnerForm = styled.div`
   postion: relative;
 `;
 
-const Element = styled.div`
+const FormContent = styled.div`
   padding: 30px;
+  color: black;
 `;

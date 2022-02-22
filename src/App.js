@@ -4,10 +4,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div
-      style={{ backgroundColor: "blue", backgroundSize: "cover" }}
-      className="App"
-    >
+    <div className="App">
       <Form />
     </div>
   );

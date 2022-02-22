@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 
 function Input(props) {
   return (
-    <input
-      style={{ fontSize: "15px" }}
+    <StyledInput
       type={props.type}
       name={props.name}
       placeholder={props.placeholder}
@@ -12,5 +12,9 @@ function Input(props) {
     />
   );
 }
+const StyledInput = styled.input`
+  background-color: ;
+  font-size: 25px;
+`;
 
 export default Input;
