@@ -70,11 +70,9 @@ function Form(props) {
   );
 }
 
-export default Form;
-
 const OuterForm = styled.div`
   display: flex;
-  margin-top: 10%;
+  margin-top: 4%;
   align-items: center;
   flex-direction: column;
   padding: 10px;
@@ -82,6 +80,10 @@ const OuterForm = styled.div`
 `;
 
 const FormContent = styled.div`
-  color: black;
-  padding: 12px;
+  font-size: 12px;
+  font-family: "Open Sans", sans-serif;
+  color: #e33d3d;
+  padding: 20px;
 `;
+
+export default Form;

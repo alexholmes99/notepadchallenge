@@ -15,6 +15,7 @@ function Input(props) {
 const StyledInput = styled.input`
   background-color: ;
   font-size: 25px;
+  font-family: "Noto Sans", sans-serif;
 `;
 
 export default Input;
