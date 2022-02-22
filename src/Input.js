@@ -13,10 +13,12 @@ function Input(props) {
   );
 }
 const StyledInput = styled.input`
-  background-color: ;
-  font-size: 25px;
-  font-family: "Noto Sans", sans-serif;
-  box-shadow: 1px 2px;
+  margin-top: 2%;
+  background-color: #f5f4f2;
+  opacity: 0.5;
+  font-size: 35px;
+  font-family: "Sue Ellen Francisco", cursive;
+  border: none;
 `;
 
 export default Input;

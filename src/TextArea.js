@@ -14,8 +14,10 @@ function TextArea(props) {
 }
 
 const StyledText = styled.textarea`
-  font-size: 25px;
-  font-family: "Noto Sans", sans-serif;
-  box-shadow: 1px 2px;
+  background-color: #f5f4f2;
+  opacity: 0.5;
+  font-size: 35px;
+  font-family: "Sue Ellen Francisco", cursive;
+  border: none;
 `;
 export default TextArea;
