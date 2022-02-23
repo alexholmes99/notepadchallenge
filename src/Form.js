@@ -48,7 +48,7 @@ function Form(props) {
   return (
     <OuterForm onSubmit={handleSubmit}>
       <FormContent>
-        {emptyData.name && <h2>Name required</h2>}
+        {emptyData.name && <ErrorMessage>Name required</ErrorMessage>}
         <Input
           type="text"
           name="name"
@@ -58,7 +58,7 @@ function Form(props) {
         />
       </FormContent>
       <FormContent>
-        {emptyData.date && <h2>Date Required</h2>}
+        {emptyData.date && <ErrorMessage>Date Required</ErrorMessage>}
         <Input
           type="date"
           name="date"
@@ -69,7 +69,7 @@ function Form(props) {
         />
       </FormContent>
       <FormContent>
-        {emptyData.note && <h2>Note Required</h2>}
+        {emptyData.note && <ErrorMessage>Note Required</ErrorMessage>}
         <TextArea
           name="note"
           placeholder="Enter Note Here"
@@ -95,11 +95,14 @@ const OuterForm = styled.form`
 `;
 
 const FormContent = styled.div`
-  font-size: 12px;
-  font-family: "Sue Ellen Francisco", cursive;
-  color: #e33d3d;
   padding: 10px;
   margin: 0%;
+`;
+
+const ErrorMessage = styled.h2`
+  font-size: 18px;
+  font-family: "Sue Ellen Francisco", cursive;
+  color: #e33d3d;
 `;
 
 export default Form;
