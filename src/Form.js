@@ -35,13 +35,12 @@ function Form(props) {
     });
   };
 
-  const validateSubmit = (e) => {
-    if (formData.name == "" || formData.date == "" || formData.note == "") {
-      e.preventDefault();
-    }
-  };
-
   const handleSubmit = (e) => {
+    const validateSubmit = (e) => {
+      if (formData.name == "" || formData.date == "" || formData.note == "") {
+        e.preventDefault();
+      }
+    };
     validateSubmit(e);
   };
 
