@@ -35,8 +35,18 @@ function Form(props) {
     });
   };
 
+  const validateSubmit = (e) => {
+    if (formData.name == "" || formData.date == "" || formData.note == "") {
+      e.preventDefault();
+    }
+  };
+
+  const handleSubmit = (e) => {
+    validateSubmit(e);
+  };
+
   return (
-    <OuterForm>
+    <OuterForm onSubmit={handleSubmit}>
       <FormContent>
         {emptyData.name && <h2>Name required</h2>}
         <Input
@@ -69,7 +79,7 @@ function Form(props) {
         />
       </FormContent>
       <FormContent>
-        <Button content="Submit" type="Submit" value="Submit" />
+        <Button type="Submit" value="Submit" content="Submit" />
       </FormContent>
     </OuterForm>
   );
