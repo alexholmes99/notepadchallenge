@@ -3,7 +3,12 @@ import styled from "styled-components";
 
 function Button(props) {
   return (
-    <StyledButton type={props.type} value={props.value} {...props}>
+    <StyledButton
+      type={props.type}
+      value={props.value}
+      cssOptions={props.cssOptions}
+      {...props}
+    >
       {props.content}
     </StyledButton>
   );
