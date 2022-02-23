@@ -10,10 +10,10 @@ function Button(props) {
 }
 
 const StyledButton = styled.button`
-  border: none;
-  opacity: 0.8;
-  color: #e33d3d;
-  font-size: 24px;
+  border: ${(props) => props.cssOptions.border};
+  opacity: ${(props) => props.cssOptions.opacity};
+  color: ${(props) => props.cssOptions.color};
+  font-size: ${(props) => props.cssOptions.fontsize};
   width: 100%;
   font-family: "Sue Ellen Francisco", cursive;
 `;

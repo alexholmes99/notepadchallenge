@@ -79,7 +79,17 @@ function Form(props) {
         />
       </FormContent>
       <FormContent>
-        <Button type="Submit" value="Submit" content="Submit" />
+        <Button
+          type="Submit"
+          value="Submit"
+          content="Submit"
+          cssOptions={{
+            border: "none",
+            opacity: "0.8",
+            color: "#e33d3d",
+            fontsize: "24px",
+          }}
+        />
       </FormContent>
     </OuterForm>
   );
