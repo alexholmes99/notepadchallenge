@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-image: url("./background.jpg");
+  background-size: cover;
+}
+
+/* Sue Ellen Fiasco */
+@import url("https://fonts.googleapis.com/css2?family=Sue+Ellen+Francisco&display=swap");
+/* Bilbo */
+@import url("https://fonts.googleapis.com/css2?family=Bilbo&display=swap");
