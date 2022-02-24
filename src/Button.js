@@ -9,7 +9,7 @@ function Button(props) {
       cssOptions={props.cssOptions}
       {...props}
     >
-      {props.content}
+      {props.children}
     </StyledButton>
   );
 }
