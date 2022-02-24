@@ -37,7 +37,7 @@ function Form(props) {
   const validateSubmit = (e) => {
     let isValidated = true;
     Object.keys(formData).forEach((key) => {
-      if (formData[key] == "") {
+      if (formData[key] === "") {
         setEmptyData((prev) => {
           return {
             ...prev,
@@ -53,7 +53,7 @@ function Form(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValidated = validateSubmit();
-    if (isValidated == true) {
+    if (isValidated === true) {
       // Assign Note Content Here
     }
   };
