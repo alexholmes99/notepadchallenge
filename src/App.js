@@ -1,6 +1,6 @@
 import React from "react";
-import Form from "./Form";
-import Logo from "./Logo";
+import Form from "./Components/Form";
+import Logo from "./Components/Logo";
 import styled from "styled-components";
 
 function App() {
