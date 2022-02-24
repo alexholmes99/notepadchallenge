@@ -53,7 +53,7 @@ function Form(props) {
 
   const handleSubmit = (e) => {
     const isValidated = validateSubmit();
-    if (isValidated == true) {
+    if (isValidated != true) {
       e.preventDefault();
     }
   };
