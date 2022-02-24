@@ -37,11 +37,11 @@ function Form(props) {
   const validateSubmit = (e) => {
     let isValidated = true;
     Object.keys(formData).forEach((key) => {
-      if (formData[data] == "") {
+      if (formData[key] == "") {
         setEmptyData((prev) => {
           return {
             ...prev,
-            [data]: true,
+            [key]: true,
           };
         });
         isValidated = false;
