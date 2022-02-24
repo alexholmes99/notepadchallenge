@@ -35,6 +35,7 @@ function Form(props) {
     });
   };
   const validateSubmit = (e) => {
+    const isValidated = false;
     Object.keys(formData).forEach((data) => {
       if (formData[data] == "") {
         setEmptyData((prev) => {
@@ -43,13 +44,18 @@ function Form(props) {
             [data]: true,
           };
         });
+      } else {
+        isValidated = true;
       }
     });
+    return isValidated;
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    validateSubmit();
+    const isValidated = validateSubmit();
+    if (isValidated == true) {
+      e.preventDefault();
+    }
   };
 
   return (
