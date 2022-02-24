@@ -34,14 +34,22 @@ function Form(props) {
       };
     });
   };
+  const validateSubmit = (e) => {
+    Object.keys(formData).forEach((data) => {
+      if (formData[data] == "") {
+        setEmptyData((prev) => {
+          return {
+            ...prev,
+            [data]: true,
+          };
+        });
+      }
+    });
+  };
 
   const handleSubmit = (e) => {
-    const validateSubmit = (e) => {
-      if (formData.name == "" || formData.date == "" || formData.note == "") {
-        e.preventDefault();
-      }
-    };
-    validateSubmit(e);
+    e.preventDefault();
+    validateSubmit();
   };
 
   return (
@@ -88,7 +96,9 @@ function Form(props) {
             color: "#e33d3d",
             fontsize: "24px",
           }}
-        />
+        >
+          Submit
+        </Button>
       </FormContent>
     </OuterForm>
   );
