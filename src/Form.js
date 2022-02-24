@@ -36,7 +36,7 @@ function Form(props) {
   };
   const validateSubmit = (e) => {
     let isValidated = true;
-    Object.keys(formData).forEach((data) => {
+    Object.keys(formData).forEach((key) => {
       if (formData[data] == "") {
         setEmptyData((prev) => {
           return {
@@ -95,7 +95,6 @@ function Form(props) {
         <Button
           type="Submit"
           value="Submit"
-          content="Submit"
           cssOptions={{
             border: "none",
             opacity: "0.8",
