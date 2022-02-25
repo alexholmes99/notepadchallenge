@@ -16,7 +16,7 @@ function Form(props) {
 
   const notes = useSelector((state) => {
     console.log(state);
-    return state.noteReducer.values;
+    return state.noteReducer.value;
   });
 
   const dispatch = useDispatch();

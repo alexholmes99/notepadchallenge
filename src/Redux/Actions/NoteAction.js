@@ -1,8 +1,8 @@
 import * as actionTypes from "./NoteActionTypes";
 
-export const setNote = (values) => {
+export const setNote = (value) => {
   return {
     type: actionTypes.SET_NOTE,
-    values,
+    value,
   };
 };
