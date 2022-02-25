@@ -2,15 +2,19 @@ import React from "react";
 import Form from "./Components/Form";
 import Logo from "./Components/Logo";
 import styled from "styled-components";
+import { Provider } from "react-redux";
+import store from "./Redux/store";
 
 function App() {
   return (
-    <AppDiv>
-      <LogoDiv>
-        <Logo />
-      </LogoDiv>
-      <Form />
-    </AppDiv>
+    <Provider store={store}>
+      <AppDiv>
+        <LogoDiv>
+          <Logo />
+        </LogoDiv>
+        <Form />
+      </AppDiv>
+    </Provider>
   );
 }
 

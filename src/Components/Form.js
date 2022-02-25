@@ -3,7 +3,9 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
-import Logo from "./Logo";
+import { useDispatch } from "react-redux";
+import { setNote } from "../Redux/Actions/NoteAction";
+import { useSelector } from "react-redux";
 
 function Form(props) {
   const [formData, setFormData] = useState({
@@ -11,6 +13,13 @@ function Form(props) {
     date: "",
     note: "",
   });
+
+  const notes = useSelector((state) => {
+    console.log(state);
+    return state.noteReducer.values;
+  });
+
+  const dispatch = useDispatch();
 
   const [emptyData, setEmptyData] = useState({
     name: false,
@@ -49,12 +58,15 @@ function Form(props) {
     });
     return isValidated;
   };
-
+  console.log(notes);
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValidated = validateSubmit();
     if (isValidated == true) {
-      // Assign Note Content Here
+      const formDataCopy = { ...formData };
+      const notesCopy = [...notes];
+      notesCopy.push(formDataCopy);
+      dispatch(setNote(notesCopy));
     }
   };
 

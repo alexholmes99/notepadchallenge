@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import rootReducer from "./rootReducer";
+import rootReducer from "./Reducers/RootReducer";
 
 const initialState = {};
 const middleware = [thunk];
 
-const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
+// if you want to look at the store ensure you have the redux state extension installed on chrome to see the redux state
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
   initialState,
