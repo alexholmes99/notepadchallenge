@@ -15,7 +15,6 @@ function Form(props) {
   });
 
   const notes = useSelector((state) => {
-    console.log(state);
     return state.noteReducer.value;
   });
 
@@ -58,7 +57,6 @@ function Form(props) {
     });
     return isValidated;
   };
-  console.log(notes);
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValidated = validateSubmit();

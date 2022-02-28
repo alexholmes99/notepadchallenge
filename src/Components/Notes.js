@@ -11,9 +11,9 @@ function Notes() {
       {notes.map((n) => {
         return (
           <StickyNote>
-            <h2>{n.name}</h2>
-            <h4>{n.date}</h4>
-            <h3>{n.note}</h3>
+            <NoteDate>{n.date}</NoteDate>
+            <NoteName>{n.name}</NoteName>
+            <NoteContent>{n.note}</NoteContent>
           </StickyNote>
         );
       })}
@@ -22,13 +22,73 @@ function Notes() {
 }
 
 const StickyNote = styled.div`
-  text-decoration: none;
-  font-family: "Sue Ellen Francisco", cursive;
+  float: left;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   color: #000;
   background: #ffc;
   display: block;
-  height: 10em;
-  width: 10em;
-  padding: 1em;
+  height: 20em;
+  width: 20em;
+  margin: 20px;
+  box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+  transition: transform 0.15s linear;
+  &:nth-child(even) {
+    transform: rotate(4deg);
+    position: relative;
+    top: 5px;
+    background: #cfc;
+  }
+  &:nth-child(3n) {
+    transform: rotate(-5deg);
+    position: relative;
+    top: -5px;
+    background: #ccf;
+  }
+  &:nth-child(5n) {
+    transform: rotate(5deg);
+    position: relative;
+    top: -10px;
+  }
+  &:hover,
+  &:focus {
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
+    transform: scale(1.25);
+    position: relative;
+    z-index: 5;
+  }
 `;
+
+const NoteName = styled.h1`
+  font-weight: bold;
+  font-family: "Sue Ellen Francisco", cursive;
+  font-size: 35px;
+  text-decoration: underline;
+  text-align: center;
+  margin: 0;
+`;
+
+const NoteDate = styled.h4`
+  font-size: 16px;
+  text-align: left;
+  font-family: "Sue Ellen Francisco", cursive;
+  padding-left: 5px;
+  padding-bottom: 0;
+  margin: 0;
+`;
+
+const NoteContent = styled.p`
+  font-family: "Sue Ellen Francisco", cursive;
+  font-size: 20px;
+  margin: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+`;
+
 export default Notes;
