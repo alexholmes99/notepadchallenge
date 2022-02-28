@@ -12,8 +12,8 @@ function Notes() {
         return (
           <StickyNote>
             <h2>{n.name}</h2>
-            <h3>{n.date}</h3>
-            <p>{n.note}</p>
+            <h4>{n.date}</h4>
+            <h3>{n.note}</h3>
           </StickyNote>
         );
       })}
@@ -23,18 +23,12 @@ function Notes() {
 
 const StickyNote = styled.div`
   text-decoration: none;
+  font-family: "Sue Ellen Francisco", cursive;
   color: #000;
   background: #ffc;
   display: block;
   height: 10em;
   width: 10em;
   padding: 1em;
-`;
-
-const NoteCont = styled.div`
-  // margin: 20px auto;
-  // font-family: "Lato";
-  // background: #666;
-  // color: #fff;
 `;
 export default Notes;
