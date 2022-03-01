@@ -24,6 +24,7 @@ function Form(props) {
     name: false,
     date: false,
     note: false,
+    submitted: false,
   });
 
   const handleChange = (e, key) => {
@@ -42,6 +43,7 @@ function Form(props) {
       };
     });
   };
+
   const validateSubmit = (e) => {
     let isValidated = true;
     Object.keys(formData).forEach((key) => {
@@ -57,10 +59,12 @@ function Form(props) {
     });
     return isValidated;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValidated = validateSubmit();
     if (isValidated == true) {
+      setEmptyData({ submitted: true });
       const formDataCopy = { ...formData };
       const notesCopy = [...notes];
       notesCopy.push(formDataCopy);
@@ -115,6 +119,9 @@ function Form(props) {
           Submit
         </Button>
       </FormContent>
+      {!emptyData.submitted && (
+        <NoNotes> Notes will be displayed here </NoNotes>
+      )}
     </OuterForm>
   );
 }
@@ -137,6 +144,11 @@ const ErrorMessage = styled.h2`
   font-size: 18px;
   font-family: "Sue Ellen Francisco", cursive;
   color: #e33d3d;
+`;
+
+const NoNotes = styled.h1`
+  font-size: 28px;
+  font-family: "Sue Ellen Francisco", cursive;
 `;
 
 export default Form;
