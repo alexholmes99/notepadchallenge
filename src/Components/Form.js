@@ -3,9 +3,9 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { setNote } from "../Redux/Actions/NoteAction";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 function Form(props) {
   const [formData, setFormData] = useState({
@@ -65,6 +65,7 @@ function Form(props) {
     const isValidated = validateSubmit();
     if (isValidated == true) {
       setEmptyData({ submitted: true });
+      const uniqueId = uuidv4();
       const formDataCopy = { ...formData };
       const notesCopy = [...notes];
       notesCopy.push(formDataCopy);

@@ -6,6 +6,7 @@ function Notes() {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
+
   return (
     <div>
       {notes.map((n) => {
