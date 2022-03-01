@@ -24,7 +24,10 @@ function Form(props) {
     name: false,
     date: false,
     note: false,
-    submitted: false,
+  });
+
+  const [modifiers, setModifiers] = useState({
+    sorted: false,
   });
 
   const handleChange = (e, key) => {
@@ -73,6 +76,16 @@ function Form(props) {
     }
   };
 
+  const sortNotes = (e) => {
+    e.preventDefault();
+    if (!modifiers.sorted) {
+      let notesSorted = [...notes];
+      notesSorted.sort((a, b) => (a.date > b.date ? 1 : -1));
+      dispatch(setNote(notesSorted));
+      setModifiers({ sorted: true });
+    }
+  };
+
   return (
     <OuterForm onSubmit={handleSubmit}>
       <FormContent>
@@ -118,6 +131,21 @@ function Form(props) {
           }}
         >
           Submit
+        </Button>
+      </FormContent>
+      <FormContent>
+        <Button
+          type="Sort"
+          value="Sort"
+          onClick={sortNotes}
+          cssOptions={{
+            border: "none",
+            opacity: "0.8",
+            color: "#e33d3d",
+            fontsize: "24px",
+          }}
+        >
+          Sort Notes
         </Button>
       </FormContent>
       {notes.length === 0 ? (

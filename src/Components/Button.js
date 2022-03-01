@@ -6,6 +6,7 @@ function Button(props) {
     <StyledButton
       type={props.type}
       value={props.value}
+      onChange={props.onChange}
       cssOptions={props.cssOptions}
       {...props}
     >
