@@ -48,7 +48,7 @@ function Form(props) {
   };
 
   const validateSubmit = (e) => {
-    let isValidated = true;
+    let emptyValues = false;
     Object.keys(formData).forEach((key) => {
       if (formData[key] == "") {
         setEmptyData((prev) => {
@@ -57,17 +57,16 @@ function Form(props) {
             [key]: true,
           };
         });
-        isValidated = false;
+        emptyValues = true;
       }
     });
-    return isValidated;
+    return emptyValues;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isValidated = validateSubmit();
-    if (isValidated == true) {
-      setEmptyData({ submitted: true });
+    const emptyValues = validateSubmit();
+    if (emptyValues != true) {
       document.getElementById("Sort").style.display = "flex";
       const uniqueId = uuidv4();
       const formDataCopy = { ...formData };
@@ -78,12 +77,17 @@ function Form(props) {
   };
 
   const sortNotes = (e) => {
+    console.log(modifiers.sorted);
     e.preventDefault();
+    let notesNormal = [...notes];
+    let notesSorted = [...notes];
+    notesSorted.sort((a, b) => (a.date > b.date ? 1 : -1));
     if (!modifiers.sorted) {
-      let notesSorted = [...notes];
-      notesSorted.sort((a, b) => (a.date > b.date ? 1 : -1));
       dispatch(setNote(notesSorted));
       setModifiers({ sorted: true });
+    } else {
+      dispatch(setNote(notesNormal));
+      setModifiers({ sorted: false });
     }
   };
 
@@ -151,9 +155,11 @@ function Form(props) {
           Sort Notes
         </Button>
       </FormContent>
-      {notes.length === 0 ? (
-        <NoNotes> Notes will be displayed here </NoNotes>
-      ) : null}
+      <FormContent>
+        {notes.length === 0 ? (
+          <NoNotes> Notes will be displayed here </NoNotes>
+        ) : null}
+      </FormContent>
     </OuterForm>
   );
 }
