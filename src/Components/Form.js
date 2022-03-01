@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import Input from "./Input";
 import TextArea from "./TextArea";
+import Button from "./Button";
 import styled from "styled-components";
-import Logo from "./Logo";
+import { useDispatch } from "react-redux";
+import { setNote } from "../Redux/Actions/NoteAction";
+import { useSelector } from "react-redux";
 
 function Form(props) {
   const [formData, setFormData] = useState({
@@ -10,6 +13,12 @@ function Form(props) {
     date: "",
     note: "",
   });
+
+  const notes = useSelector((state) => {
+    return state.noteReducer.value;
+  });
+
+  const dispatch = useDispatch();
 
   const [emptyData, setEmptyData] = useState({
     name: false,
@@ -33,11 +42,36 @@ function Form(props) {
       };
     });
   };
+  const validateSubmit = (e) => {
+    let isValidated = true;
+    Object.keys(formData).forEach((key) => {
+      if (formData[key] == "") {
+        setEmptyData((prev) => {
+          return {
+            ...prev,
+            [key]: true,
+          };
+        });
+        isValidated = false;
+      }
+    });
+    return isValidated;
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isValidated = validateSubmit();
+    if (isValidated == true) {
+      const formDataCopy = { ...formData };
+      const notesCopy = [...notes];
+      notesCopy.push(formDataCopy);
+      dispatch(setNote(notesCopy));
+    }
+  };
 
   return (
-    <OuterForm>
+    <OuterForm onSubmit={handleSubmit}>
       <FormContent>
-        {emptyData.name && <h2>Name required</h2>}
+        {emptyData.name && <ErrorMessage>Name required</ErrorMessage>}
         <Input
           type="text"
           name="name"
@@ -47,7 +81,7 @@ function Form(props) {
         />
       </FormContent>
       <FormContent>
-        {emptyData.date && <h2>Date Required</h2>}
+        {emptyData.date && <ErrorMessage>Date Required</ErrorMessage>}
         <Input
           type="date"
           name="date"
@@ -58,7 +92,7 @@ function Form(props) {
         />
       </FormContent>
       <FormContent>
-        {emptyData.note && <h2>Note Required</h2>}
+        {emptyData.note && <ErrorMessage>Note Required</ErrorMessage>}
         <TextArea
           name="note"
           placeholder="Enter Note Here"
@@ -67,11 +101,25 @@ function Form(props) {
           onBlur={(e) => handleBlur(e.target.value, "note")}
         />
       </FormContent>
+      <FormContent>
+        <Button
+          type="Submit"
+          value="Submit"
+          cssOptions={{
+            border: "none",
+            opacity: "0.8",
+            color: "#e33d3d",
+            fontsize: "24px",
+          }}
+        >
+          Submit
+        </Button>
+      </FormContent>
     </OuterForm>
   );
 }
 
-const OuterForm = styled.div`
+const OuterForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,11 +129,14 @@ const OuterForm = styled.div`
 `;
 
 const FormContent = styled.div`
-  font-size: 12px;
-  font-family: "Open Sans", sans-serif;
-  color: #e33d3d;
   padding: 10px;
   margin: 0%;
+`;
+
+const ErrorMessage = styled.h2`
+  font-size: 18px;
+  font-family: "Sue Ellen Francisco", cursive;
+  color: #e33d3d;
 `;
 
 export default Form;

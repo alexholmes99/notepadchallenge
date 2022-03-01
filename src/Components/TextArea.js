@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-function Input(props) {
+function TextArea(props) {
   return (
-    <StyledInput
-      type={props.type}
+    <StyledText
       name={props.name}
       placeholder={props.placeholder}
+      value={props.value}
       onChange={props.onChange}
       onBlur={props.onBlur}
     />
   );
 }
-const StyledInput = styled.input`
-  margin-top: 2%;
+
+const StyledText = styled.textarea`
   background-color: #f5f4f2;
   opacity: 0.5;
   font-size: 35px;
@@ -21,4 +21,4 @@ const StyledInput = styled.input`
   border: none;
 `;
 
-export default Input;
+export default TextArea;
