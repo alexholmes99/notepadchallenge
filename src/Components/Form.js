@@ -14,7 +14,7 @@ function Form(props) {
     note: "",
   });
 
-  const notes = useSelector((state) => {
+  let notes = useSelector((state) => {
     return state.noteReducer.value;
   });
 
@@ -120,9 +120,9 @@ function Form(props) {
           Submit
         </Button>
       </FormContent>
-      {!emptyData.submitted && (
+      {notes.length === 0 ? (
         <NoNotes> Notes will be displayed here </NoNotes>
-      )}
+      ) : null}
     </OuterForm>
   );
 }
