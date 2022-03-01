@@ -20,6 +20,7 @@ const StyledButton = styled.button`
   opacity: ${(props) => props.cssOptions.opacity};
   color: ${(props) => props.cssOptions.color};
   font-size: ${(props) => props.cssOptions.fontsize};
+  display: ${(props) => props.cssOptions.display};
   width: 100%;
   font-family: "Sue Ellen Francisco", cursive;
 `;

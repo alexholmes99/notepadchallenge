@@ -68,6 +68,7 @@ function Form(props) {
     const isValidated = validateSubmit();
     if (isValidated == true) {
       setEmptyData({ submitted: true });
+      document.getElementById("Sort").style.display = "flex";
       const uniqueId = uuidv4();
       const formDataCopy = { ...formData };
       const notesCopy = [...notes];
@@ -137,12 +138,14 @@ function Form(props) {
         <Button
           type="Sort"
           value="Sort"
+          id="Sort"
           onClick={sortNotes}
           cssOptions={{
             border: "none",
             opacity: "0.8",
             color: "#e33d3d",
             fontsize: "24px",
+            display: "none",
           }}
         >
           Sort Notes
