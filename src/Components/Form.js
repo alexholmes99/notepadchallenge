@@ -33,10 +33,11 @@ function Form(props) {
   };
 
   const handleBlur = (key) => {
+    if (key === "id") return;
     if (formData[key] == "") {
       document.getElementById(key).innerHTML = key + " required";
     } else {
-      document.getElementById(key).innerHTML = null;
+      document.getElementById(key).innerHTML = "";
     }
   };
 
@@ -54,25 +55,11 @@ function Form(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const emptyValues = validateSubmit();
-    if (emptyValues != true) {
-      document.getElementById("Sort").style.display = "flex";
-      const uniqueId = uuidv4();
-      dispatch(setNote(formData));
-    }
-  };
-
-  const sortNotes = (e) => {
-    console.log(modifiers.sorted);
-    e.preventDefault();
-    let notesNormal = [...notes];
-    let notesSorted = [...notes];
-    notesSorted.sort((a, b) => (a.date > b.date ? 1 : -1));
-    if (!modifiers.sorted) {
-      dispatch(setNote(notesSorted));
-      setModifiers({ sorted: true });
-    } else {
-      dispatch(setNote(notesNormal));
-      setModifiers({ sorted: false });
+    if (!emptyValues) {
+      let uniqueId = uuidv4();
+      let formDataCopy = { ...formData, id: uniqueId };
+      console.log(formDataCopy);
+      dispatch(setNote(formDataCopy));
     }
   };
 
@@ -121,23 +108,6 @@ function Form(props) {
           }}
         >
           Submit
-        </Button>
-      </FormContent>
-      <FormContent>
-        <Button
-          type="Sort"
-          value="Sort"
-          id="Sort"
-          onClick={sortNotes}
-          cssOptions={{
-            border: "none",
-            opacity: "0.8",
-            color: "#e33d3d",
-            fontsize: "24px",
-            display: "none",
-          }}
-        >
-          Sort Notes
         </Button>
       </FormContent>
       <FormContent>

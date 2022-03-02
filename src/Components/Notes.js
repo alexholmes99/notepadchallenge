@@ -1,23 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import Button from "./Button";
 
 function Notes() {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
 
+  const [sorted, setSorted] = useState(false);
+
+  const sortNotes = (e) => {
+    e.preventDefault();
+    setSorted(!sorted);
+  };
+
+  const noteMap = () => {
+    let sortedData = [...notes];
+    if (sorted) {
+      sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
+    }
+    console.log("SORTED", sortedData);
+    return sortedData.map((n) => {
+      return (
+        <StickyNote key={n.id}>
+          <NoteDate>{n.date}</NoteDate>
+          <NoteName>{n.name}</NoteName>
+          <NoteContent>{n.note}</NoteContent>
+        </StickyNote>
+      );
+    });
+  };
+
   return (
     <div>
-      {notes.map((n) => {
-        return (
-          <StickyNote>
-            <NoteDate>{n.date}</NoteDate>
-            <NoteName>{n.name}</NoteName>
-            <NoteContent>{n.note}</NoteContent>
-          </StickyNote>
-        );
-      })}
+      <Button
+        type="Sort"
+        value="Sort"
+        id="Sort"
+        onClick={sortNotes}
+        cssOptions={{
+          border: "none",
+          opacity: "0.8",
+          color: "#e33d3d",
+          fontsize: "24px",
+        }}
+      >
+        Sort Notes
+      </Button>
+      {noteMap()}
     </div>
   );
 }
