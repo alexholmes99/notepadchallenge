@@ -20,7 +20,6 @@ function Notes() {
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
     }
-    console.log("SORTED", sortedData);
     return sortedData.map((n) => {
       return (
         <StickyNote key={n.id}>
