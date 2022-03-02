@@ -7,7 +7,10 @@ export const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case actions.SET_NOTE:
-      return { ...state, value: action.value };
+      let x = state.value;
+      let dataArray = [...x];
+      dataArray.push(action.value);
+      return { ...state, value: dataArray };
     default:
       return state;
   }

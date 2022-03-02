@@ -57,10 +57,7 @@ function Form(props) {
     if (emptyValues != true) {
       document.getElementById("Sort").style.display = "flex";
       const uniqueId = uuidv4();
-      const formDataCopy = { ...formData };
-      const notesCopy = [...notes];
-      notesCopy.push(formDataCopy);
-      dispatch(setNote(notesCopy));
+      dispatch(setNote(formData));
     }
   };
 
