@@ -20,12 +20,6 @@ function Form(props) {
 
   const dispatch = useDispatch();
 
-  const [emptyData, setEmptyData] = useState({
-    name: false,
-    date: false,
-    note: false,
-  });
-
   const [modifiers, setModifiers] = useState({
     sorted: false,
   });
@@ -38,25 +32,19 @@ function Form(props) {
     setFormData(newData);
   };
 
-  const handleBlur = (value, key) => {
-    setEmptyData((previousState) => {
-      return {
-        ...previousState,
-        [key]: value === "",
-      };
-    });
+  const handleBlur = (key) => {
+    if (formData[key] == "") {
+      document.getElementById(key).innerHTML = key + " required";
+    } else {
+      document.getElementById(key).innerHTML = null;
+    }
   };
 
   const validateSubmit = (e) => {
     let emptyValues = false;
     Object.keys(formData).forEach((key) => {
+      handleBlur(key);
       if (formData[key] == "") {
-        setEmptyData((prev) => {
-          return {
-            ...prev,
-            [key]: true,
-          };
-        });
         emptyValues = true;
       }
     });
@@ -94,34 +82,34 @@ function Form(props) {
   return (
     <OuterForm onSubmit={handleSubmit}>
       <FormContent>
-        {emptyData.name && <ErrorMessage>Name required</ErrorMessage>}
+        {<ErrorMessage id="name"></ErrorMessage>}
         <Input
           type="text"
           name="name"
           placeholder="Enter Your Name"
           onChange={(e) => handleChange(e, "name")}
-          onBlur={(e) => handleBlur(e.target.value, "name")}
+          onBlur={(e) => handleBlur("name")}
         />
       </FormContent>
       <FormContent>
-        {emptyData.date && <ErrorMessage>Date Required</ErrorMessage>}
+        {<ErrorMessage id="date"></ErrorMessage>}
         <Input
           type="date"
           name="date"
           placeholder=""
           value={formData.date}
           onChange={(e) => handleChange(e, "date")}
-          onBlur={(e) => handleBlur(e.target.value, "date")}
+          onBlur={(e) => handleBlur("date")}
         />
       </FormContent>
       <FormContent>
-        {emptyData.note && <ErrorMessage>Note Required</ErrorMessage>}
+        {<ErrorMessage id="note"></ErrorMessage>}
         <TextArea
           name="note"
           placeholder="Enter Note Here"
           value={formData.note}
           onChange={(e) => handleChange(e, "note")}
-          onBlur={(e) => handleBlur(e.target.value, "note")}
+          onBlur={(e) => handleBlur("note")}
         />
       </FormContent>
       <FormContent>
