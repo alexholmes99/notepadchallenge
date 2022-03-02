@@ -21,7 +21,10 @@ const StyledButton = styled.button`
   color: ${(props) => props.cssOptions.color};
   font-size: ${(props) => props.cssOptions.fontsize};
   display: ${(props) => props.cssOptions.display};
-  width: 100%;
+  width: ${(props) => props.cssOptions.width};
+  float: ${(props) => props.cssOptions.float};
+  background: ${(props) => props.cssOptions.background};
   font-family: "Sue Ellen Francisco", cursive;
+  text-decoration: ${(props) => props.cssOptions.textdecor};
 `;
 export default Button;

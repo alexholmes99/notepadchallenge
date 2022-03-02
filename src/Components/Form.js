@@ -110,11 +110,6 @@ function Form(props) {
           Submit
         </Button>
       </FormContent>
-      <FormContent>
-        {notes.length === 0 ? (
-          <NoNotes> Notes will be displayed here </NoNotes>
-        ) : null}
-      </FormContent>
     </OuterForm>
   );
 }
@@ -138,10 +133,4 @@ const ErrorMessage = styled.h2`
   font-family: "Sue Ellen Francisco", cursive;
   color: #e33d3d;
 `;
-
-const NoNotes = styled.h1`
-  font-size: 28px;
-  font-family: "Sue Ellen Francisco", cursive;
-`;
-
 export default Form;

@@ -19,6 +19,7 @@ function Notes() {
     let sortedData = [...notes];
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
+    } else {
     }
     return sortedData.map((n) => {
       return (
@@ -33,20 +34,28 @@ function Notes() {
 
   return (
     <div>
-      <Button
-        type="Sort"
-        value="Sort"
-        id="Sort"
-        onClick={sortNotes}
-        cssOptions={{
-          border: "none",
-          opacity: "0.8",
-          color: "#e33d3d",
-          fontsize: "24px",
-        }}
-      >
-        Sort Notes
-      </Button>
+      {notes.length != 0 ? (
+        <Button
+          type="Sort"
+          value="Sort"
+          id="Sort"
+          onClick={sortNotes}
+          cssOptions={{
+            border: "none",
+            opacity: "0.8",
+            textdecor: "underline",
+            fontsize: "24px",
+            width: "10%",
+            float: "left",
+            background: "none",
+          }}
+        >
+          {sorted ? "Undo" : "Sort Notes"}
+        </Button>
+      ) : null}
+      {notes.length === 0 ? (
+        <NoNotes> Notes will be displayed here </NoNotes>
+      ) : null}
       {noteMap()}
     </div>
   );
@@ -120,6 +129,11 @@ const NoteContent = styled.p`
   word-wrap: break-word;
   white-space: pre-wrap;
   word-break: break-word;
+`;
+
+const NoNotes = styled.h1`
+  font-size: 28px;
+  font-family: "Sue Ellen Francisco", cursive;
 `;
 
 export default Notes;
