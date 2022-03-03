@@ -7,13 +7,10 @@ const Nav = (props) => {
 };
 
 const StyledNav = styled(NavLink)`
-  float: left;
   font-family: "Sue Ellen Francisco", cursive;
   text-decoration: underline;
-  font-size: 24px;
-  position: relative;
-  top: 32px;
-  left: 50px;
+  float: left;
+  font-size: 32px;
   color: black;
 `;
 export default Nav;

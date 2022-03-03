@@ -35,26 +35,28 @@ function Notes() {
 
   return (
     <div>
-      <Nav link="/notes/new">Add Note</Nav>
-      {notes.length != 0 ? (
-        <Sort
-          type="Sort"
-          value="Sort"
-          id="Sort"
-          onClick={sortNotes}
-          cssOptions={{
-            border: "none",
-            opacity: "0.8",
-            textdecor: "underline",
-            fontsize: "24px",
-            width: "10%",
-            float: "left",
-            background: "none",
-          }}
-        >
-          {sorted ? "Undo" : "Sort Notes"}
-        </Sort>
-      ) : null}
+      <NavLinks>
+        <Nav link="/notes/new">Add Note</Nav>
+        {notes.length != 0 ? (
+          <Sort
+            type="Sort"
+            value="Sort"
+            id="Sort"
+            onClick={sortNotes}
+            cssOptions={{
+              border: "none",
+              opacity: "0.8",
+              textdecor: "underline",
+              fontsize: "24px",
+              width: "10%",
+              float: "left",
+              background: "none",
+            }}
+          >
+            {sorted ? "Undo" : "Sort Notes"}
+          </Sort>
+        ) : null}
+      </NavLinks>
       {notes.length === 0 ? (
         <NoNotes> Notes will be displayed here </NoNotes>
       ) : null}
@@ -144,8 +146,10 @@ const NoNotes = styled.h1`
 
 const Sort = styled(Button)`
   float: left;
-  position: relative;
-  top: 300px;
-  margin-right: 5%;
+  font-size: 30px;
+`;
+
+const NavLinks = styled.div`
+  display: inline;
 `;
 export default Notes;
