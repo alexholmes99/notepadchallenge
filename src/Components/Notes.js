@@ -146,7 +146,7 @@ const NoNotes = styled.h1`
 
 const Sort = styled(Button)`
   float: left;
-  font-size: 30px;
+  font-size: 32px;
 `;
 
 const NavLinks = styled.div`
