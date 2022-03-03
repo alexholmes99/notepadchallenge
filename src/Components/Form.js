@@ -3,6 +3,8 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import Nav from "./Nav";
 import { setNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
@@ -63,53 +65,56 @@ function Form(props) {
   };
 
   return (
-    <OuterForm onSubmit={handleSubmit}>
-      <FormContent>
-        {<ErrorMessage id="name"></ErrorMessage>}
-        <Input
-          type="text"
-          name="name"
-          placeholder="Enter Your Name"
-          onChange={(e) => handleChange(e, "name")}
-          onBlur={(e) => handleBlur("name")}
-        />
-      </FormContent>
-      <FormContent>
-        {<ErrorMessage id="date"></ErrorMessage>}
-        <Input
-          type="date"
-          name="date"
-          placeholder=""
-          value={formData.date}
-          onChange={(e) => handleChange(e, "date")}
-          onBlur={(e) => handleBlur("date")}
-        />
-      </FormContent>
-      <FormContent>
-        {<ErrorMessage id="note"></ErrorMessage>}
-        <TextArea
-          name="note"
-          placeholder="Enter Note Here"
-          value={formData.note}
-          onChange={(e) => handleChange(e, "note")}
-          onBlur={(e) => handleBlur("note")}
-        />
-      </FormContent>
-      <FormContent>
-        <Button
-          type="Submit"
-          value="Submit"
-          cssOptions={{
-            border: "none",
-            opacity: "0.8",
-            color: "#e33d3d",
-            fontsize: "24px",
-          }}
-        >
-          Submit
-        </Button>
-      </FormContent>
-    </OuterForm>
+    <div>
+      <Nav link="/">View Notes</Nav>
+      <OuterForm onSubmit={handleSubmit}>
+        <FormContent>
+          {<ErrorMessage id="name"></ErrorMessage>}
+          <Input
+            type="text"
+            name="name"
+            placeholder="Enter Your Name"
+            onChange={(e) => handleChange(e, "name")}
+            onBlur={(e) => handleBlur("name")}
+          />
+        </FormContent>
+        <FormContent>
+          {<ErrorMessage id="date"></ErrorMessage>}
+          <Input
+            type="date"
+            name="date"
+            placeholder=""
+            value={formData.date}
+            onChange={(e) => handleChange(e, "date")}
+            onBlur={(e) => handleBlur("date")}
+          />
+        </FormContent>
+        <FormContent>
+          {<ErrorMessage id="note"></ErrorMessage>}
+          <TextArea
+            name="note"
+            placeholder="Enter Note Here"
+            value={formData.note}
+            onChange={(e) => handleChange(e, "note")}
+            onBlur={(e) => handleBlur("note")}
+          />
+        </FormContent>
+        <FormContent>
+          <Button
+            type="Submit"
+            value="Submit"
+            cssOptions={{
+              border: "none",
+              opacity: "0.8",
+              color: "#e33d3d",
+              fontsize: "24px",
+            }}
+          >
+            Submit
+          </Button>
+        </FormContent>
+      </OuterForm>
+    </div>
   );
 }
 

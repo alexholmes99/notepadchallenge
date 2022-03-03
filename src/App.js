@@ -2,6 +2,7 @@ import React from "react";
 import Form from "./Components/Form";
 import Logo from "./Components/Logo";
 import Notes from "./Components/Notes";
+import Nav from "./Components/Nav";
 import styled from "styled-components";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
@@ -11,8 +12,8 @@ function App() {
     <Provider store={store}>
       <Logo />
       <Routes>
-        <Route path="/notes/new" element={<Form />} />
         <Route path="/" element={<Notes />} />
+        <Route path="/notes/new" element={<Form />} />
       </Routes>
     </Provider>
   );

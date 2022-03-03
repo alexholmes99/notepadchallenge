@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Button from "./Button";
+import Nav from "./Nav";
+import { NavLink } from "react-router-dom";
 
 function Notes() {
   const notes = useSelector((state) => {
@@ -33,6 +35,7 @@ function Notes() {
 
   return (
     <div>
+      <Nav link="/notes/new">Add Note</Nav>
       {notes.length != 0 ? (
         <Button
           type="Sort"
