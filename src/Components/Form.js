@@ -58,7 +58,6 @@ function Form(props) {
     if (!emptyValues) {
       let uniqueId = uuidv4();
       let formDataCopy = { ...formData, id: uniqueId };
-      console.log(formDataCopy);
       dispatch(setNote(formDataCopy));
     }
   };

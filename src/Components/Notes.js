@@ -19,7 +19,6 @@ function Notes() {
     let sortedData = [...notes];
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
-    } else {
     }
     return sortedData.map((n) => {
       return (
@@ -134,6 +133,7 @@ const NoteContent = styled.p`
 const NoNotes = styled.h1`
   font-size: 28px;
   font-family: "Sue Ellen Francisco", cursive;
+  text-align: center;
 `;
 
 export default Notes;

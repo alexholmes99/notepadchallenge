@@ -5,27 +5,17 @@ import Notes from "./Components/Notes";
 import styled from "styled-components";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
-
+import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <Provider store={store}>
-      <AppDiv>
-        <LogoDiv>
-          <Logo />
-        </LogoDiv>
-        <Form />
-        <Notes />
-      </AppDiv>
+      <Logo />
+      <Routes>
+        <Route path="/notes/new" element={<Form />} />
+        <Route path="/" element={<Notes />} />
+      </Routes>
     </Provider>
   );
 }
-
-const LogoDiv = styled.div`
-  margin-bottom: none;
-`;
-
-const AppDiv = styled.div`
-  text-align: center;
-`;
 
 export default App;
