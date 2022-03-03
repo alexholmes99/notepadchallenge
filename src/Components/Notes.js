@@ -25,6 +25,7 @@ function Notes() {
     return sortedData.map((n) => {
       return (
         <StickyNote key={n.id}>
+          <Update link="notes/update">Update</Update>
           <NoteDate>{n.date}</NoteDate>
           <NoteName>{n.name}</NoteName>
           <NoteContent>{n.note}</NoteContent>
@@ -64,6 +65,8 @@ function Notes() {
     </div>
   );
 }
+const Update = styled(Nav)``;
+
 const NoteContainer = styled.div`
   margin-top: 11%;
   margin-left: 18%;
