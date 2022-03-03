@@ -37,7 +37,7 @@ function Notes() {
     <div>
       <Nav link="/notes/new">Add Note</Nav>
       {notes.length != 0 ? (
-        <Button
+        <Sort
           type="Sort"
           value="Sort"
           id="Sort"
@@ -53,16 +53,19 @@ function Notes() {
           }}
         >
           {sorted ? "Undo" : "Sort Notes"}
-        </Button>
+        </Sort>
       ) : null}
       {notes.length === 0 ? (
         <NoNotes> Notes will be displayed here </NoNotes>
       ) : null}
-      {noteMap()}
+      <NoteContainer>{noteMap()}</NoteContainer>
     </div>
   );
 }
-
+const NoteContainer = styled.div`
+  margin-top: 11%;
+  margin-left: 18%;
+`;
 const StickyNote = styled.div`
   float: left;
   display: flex;
@@ -139,4 +142,10 @@ const NoNotes = styled.h1`
   text-align: center;
 `;
 
+const Sort = styled(Button)`
+  float: left;
+  position: relative;
+  top: 300px;
+  margin-right: 5%;
+`;
 export default Notes;

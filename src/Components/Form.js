@@ -61,6 +61,7 @@ function Form(props) {
       let uniqueId = uuidv4();
       let formDataCopy = { ...formData, id: uniqueId };
       dispatch(setNote(formDataCopy));
+      alert("Note Created");
     }
   };
 
