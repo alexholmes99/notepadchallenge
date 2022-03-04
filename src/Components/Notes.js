@@ -18,7 +18,7 @@ function Notes() {
   };
 
   const noteMap = () => {
-    const sortedData = [...notes];
+    let sortedData = [...notes];
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
     }
