@@ -18,7 +18,7 @@ function Notes() {
   };
 
   const noteMap = () => {
-    let sortedData = [...notes];
+    const sortedData = [...notes];
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
     }
@@ -35,32 +35,30 @@ function Notes() {
 
   return (
     <div>
-      <NavLinks>
-        <Nav link="/notes/new">Add Note</Nav>
-        {notes.length != 0 ? (
-          <Sort
-            type="Sort"
-            value="Sort"
-            id="Sort"
-            onClick={sortNotes}
-            cssOptions={{
-              border: "none",
-              opacity: "0.8",
-              textdecor: "underline",
-              fontsize: "24px",
-              width: "10%",
-              float: "left",
-              background: "none",
-            }}
-          >
-            {sorted ? "Undo" : "Sort Notes"}
-          </Sort>
-        ) : null}
-      </NavLinks>
+      <Nav link="/notes/new">Add Note</Nav>
       {notes.length === 0 ? (
         <NoNotes> Notes will be displayed here </NoNotes>
-      ) : null}
-      <NoteContainer>{noteMap()}</NoteContainer>
+      ) : (
+        <Button
+          type="Sort"
+          value="Sort"
+          id="Sort"
+          onClick={sortNotes}
+          cssOptions={{
+            border: "none",
+            opacity: "0.8",
+            textdecor: "underline",
+            fontsize: "24px",
+            width: "10%",
+            float: "left",
+            background: "none",
+          }}
+        >
+          {sorted ? "Undo" : "Sort Notes"}
+        </Button>
+      )}
+
+      {noteMap()}
     </div>
   );
 }

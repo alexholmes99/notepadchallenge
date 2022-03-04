@@ -22,10 +22,6 @@ function Form(props) {
 
   const dispatch = useDispatch();
 
-  const [modifiers, setModifiers] = useState({
-    sorted: false,
-  });
-
   const handleChange = (e, key) => {
     const newData = {
       ...formData,
@@ -36,7 +32,7 @@ function Form(props) {
 
   const handleBlur = (key) => {
     if (key === "id") return;
-    if (formData[key] == "") {
+    if (formData[key] === "") {
       document.getElementById(key).innerHTML = key + " required";
     } else {
       document.getElementById(key).innerHTML = "";
@@ -58,8 +54,8 @@ function Form(props) {
     e.preventDefault();
     const emptyValues = validateSubmit();
     if (!emptyValues) {
-      let uniqueId = uuidv4();
-      let formDataCopy = { ...formData, id: uniqueId };
+      const uniqueId = uuidv4();
+      const formDataCopy = { ...formData, id: uniqueId };
       dispatch(setNote(formDataCopy));
       alert("Note Created");
     }
