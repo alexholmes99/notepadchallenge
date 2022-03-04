@@ -16,10 +16,9 @@ function Notes() {
   };
 
   const noteMap = () => {
-    let sortedData = [...notes];
+    const sortedData = [...notes];
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
-    } else {
     }
     return sortedData.map((n) => {
       return (
@@ -34,7 +33,9 @@ function Notes() {
 
   return (
     <div>
-      {notes.length != 0 ? (
+      {notes.length === 0 ? (
+        <NoNotes> Notes will be displayed here </NoNotes>
+      ) : (
         <Button
           type="Sort"
           value="Sort"
@@ -52,10 +53,8 @@ function Notes() {
         >
           {sorted ? "Undo" : "Sort Notes"}
         </Button>
-      ) : null}
-      {notes.length === 0 ? (
-        <NoNotes> Notes will be displayed here </NoNotes>
-      ) : null}
+      )}
+
       {noteMap()}
     </div>
   );

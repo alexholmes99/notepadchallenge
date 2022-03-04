@@ -7,8 +7,8 @@ export const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case actions.SET_NOTE:
-      let x = state.value;
-      let dataArray = [...x];
+      const newData = state.value;
+      const dataArray = [...newData];
       dataArray.push(action.value);
       return { ...state, value: dataArray };
     default:
