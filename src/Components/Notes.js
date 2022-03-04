@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Button from "./Button";
 import Nav from "./Nav";
-import { NavLink } from "react-router-dom";
 
 function Notes() {
   const notes = useSelector((state) => {
