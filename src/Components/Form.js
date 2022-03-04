@@ -3,9 +3,9 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { setNote } from "../Redux/Actions/NoteAction";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
 function Form(props) {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ function Form(props) {
     note: "",
   });
 
-  const notes = useSelector((state) => {
+  let notes = useSelector((state) => {
     return state.noteReducer.value;
   });
 
@@ -24,6 +24,7 @@ function Form(props) {
     name: false,
     date: false,
     note: false,
+    submitted: false,
   });
 
   const handleChange = (e, key) => {
@@ -42,6 +43,7 @@ function Form(props) {
       };
     });
   };
+
   const validateSubmit = (e) => {
     let isValidated = true;
     Object.keys(formData).forEach((key) => {
@@ -57,10 +59,13 @@ function Form(props) {
     });
     return isValidated;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValidated = validateSubmit();
     if (isValidated == true) {
+      setEmptyData({ submitted: true });
+      const uniqueId = uuidv4();
       const formDataCopy = { ...formData };
       const notesCopy = [...notes];
       notesCopy.push(formDataCopy);
@@ -115,6 +120,9 @@ function Form(props) {
           Submit
         </Button>
       </FormContent>
+      {notes.length === 0 ? (
+        <NoNotes> Notes will be displayed here </NoNotes>
+      ) : null}
     </OuterForm>
   );
 }
@@ -137,6 +145,11 @@ const ErrorMessage = styled.h2`
   font-size: 18px;
   font-family: "Sue Ellen Francisco", cursive;
   color: #e33d3d;
+`;
+
+const NoNotes = styled.h1`
+  font-size: 28px;
+  font-family: "Sue Ellen Francisco", cursive;
 `;
 
 export default Form;
