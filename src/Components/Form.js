@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
@@ -22,6 +22,8 @@ function Form(props) {
 
   const dispatch = useDispatch();
 
+  const emptyData = useRef({});
+
   const handleChange = (e, key) => {
     const newData = {
       ...formData,
@@ -32,11 +34,8 @@ function Form(props) {
 
   const handleBlur = (key) => {
     if (key === "id") return;
-    if (formData[key] === "") {
-      document.getElementById(key).innerHTML = key + " required";
-    } else {
-      document.getElementById(key).innerHTML = "";
-    }
+    emptyData.current[key].innerHTML =
+      formData[key] === "" ? `${key} required` : "";
   };
 
   const validateSubmit = (e) => {
@@ -66,7 +65,11 @@ function Form(props) {
       <Nav link="/">View Notes</Nav>
       <OuterForm onSubmit={handleSubmit}>
         <FormContent>
-          {<ErrorMessage id="name"></ErrorMessage>}
+          {
+            <ErrorMessage
+              ref={(element) => (emptyData.current["name"] = element)}
+            ></ErrorMessage>
+          }
           <Input
             type="text"
             name="name"
@@ -76,7 +79,11 @@ function Form(props) {
           />
         </FormContent>
         <FormContent>
-          {<ErrorMessage id="date"></ErrorMessage>}
+          {
+            <ErrorMessage
+              ref={(element) => (emptyData.current["date"] = element)}
+            ></ErrorMessage>
+          }
           <Input
             type="date"
             name="date"
@@ -87,7 +94,11 @@ function Form(props) {
           />
         </FormContent>
         <FormContent>
-          {<ErrorMessage id="note"></ErrorMessage>}
+          {
+            <ErrorMessage
+              ref={(element) => (emptyData.current["note"] = element)}
+            ></ErrorMessage>
+          }
           <TextArea
             name="note"
             placeholder="Enter Note Here"
