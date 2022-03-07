@@ -28,7 +28,7 @@ function Notes() {
     return sortedData.map((n) => {
       return (
         <StickyNote key={n.id}>
-          <Update link="notes/update">Update</Update>
+          <Update link={`/notes/update/${n.id}`}>Update</Update>
           <NoteDate>{n.date}</NoteDate>
           <NoteName>{n.name}</NoteName>
           <NoteContent>{n.note}</NoteContent>
