@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { sortNote } from "../Redux/Actions/NoteAction";
 import styled from "styled-components";
 import Button from "./Button";
 import Nav from "./Nav";
@@ -8,12 +9,15 @@ function Notes() {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
+  const sorted = useSelector((state) => {
+    return state.noteReducer.sorted;
+  });
 
-  const [sorted, setSorted] = useState(false);
+  const dispatch = useDispatch();
 
   const sortNotes = (e) => {
     e.preventDefault();
-    setSorted(!sorted);
+    dispatch(sortNote());
   };
 
   const noteMap = () => {
