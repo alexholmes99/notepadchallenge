@@ -60,11 +60,9 @@ function Form(props) {
   return (
     <OuterForm onSubmit={handleSubmit}>
       <FormContent>
-        {
-          <ErrorMessage
-            ref={(element) => (emptyData.current["name"] = element)}
-          ></ErrorMessage>
-        }
+        <ErrorMessage
+          ref={(element) => (emptyData.current["name"] = element)}
+        ></ErrorMessage>
         <Input
           type="text"
           name="name"
@@ -74,11 +72,9 @@ function Form(props) {
         />
       </FormContent>
       <FormContent>
-        {
-          <ErrorMessage
-            ref={(element) => (emptyData.current["date"] = element)}
-          ></ErrorMessage>
-        }
+        <ErrorMessage
+          ref={(element) => (emptyData.current["date"] = element)}
+        ></ErrorMessage>
         <Input
           type="date"
           name="date"
@@ -89,11 +85,9 @@ function Form(props) {
         />
       </FormContent>
       <FormContent>
-        {
-          <ErrorMessage
-            ref={(element) => (emptyData.current["note"] = element)}
-          ></ErrorMessage>
-        }
+        <ErrorMessage
+          ref={(element) => (emptyData.current["note"] = element)}
+        ></ErrorMessage>
         <TextArea
           name="note"
           placeholder="Enter Note Here"
