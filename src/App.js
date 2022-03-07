@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Notes />} />
         <Route path="/notes/new" element={<Form />} />
-        <Route path="/notes/update/:id" element={<Form />} />
+        <Route path="/notes/" element={<Form />} />
       </Routes>
     </Provider>
   );
