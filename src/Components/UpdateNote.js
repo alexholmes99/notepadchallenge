@@ -8,6 +8,7 @@ import Nav from "./Nav";
 import { setNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import Form from "./Form";
 
 function UpdateNote(props) {
   const [formData, setFormData] = useState({
@@ -53,8 +54,16 @@ function UpdateNote(props) {
 
   return (
     <div>
+      {notes
+        .filter((n) => n.key === { id })
+        .map((note) => {
+          setFormData({ name: note.name });
+          setFormData({ date: note.date });
+          setFormData({ note: note.note });
+        })}
+
       <Nav link="/">View Notes</Nav>
-      <OuterForm onSubmit="Update Here">
+      <OuterForm onSubmit={validateSubmit}>
         <FormContent>
           {
             <ErrorMessage
@@ -64,6 +73,7 @@ function UpdateNote(props) {
           <Input
             type="text"
             name="name"
+            value={formData.name}
             placeholder="Enter Your Name"
             onChange={(e) => handleChange(e, "name")}
             onBlur={(e) => handleBlur("name")}
