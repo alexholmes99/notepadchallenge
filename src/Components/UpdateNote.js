@@ -3,7 +3,7 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { useParams } from "react-router";
 import Nav from "./Nav";
 import { setNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +15,8 @@ function UpdateNote(props) {
     date: "",
     note: "",
   });
+
+  let { id } = useParams();
 
   let notes = useSelector((state) => {
     return state.noteReducer.value;
@@ -49,21 +51,10 @@ function UpdateNote(props) {
     return emptyValues;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const emptyValues = validateSubmit();
-    if (!emptyValues) {
-      const uniqueId = uuidv4();
-      const formDataCopy = { ...formData, id: uniqueId };
-      dispatch(setNote(formDataCopy));
-      alert("Note Created");
-    }
-  };
-
   return (
     <div>
       <Nav link="/">View Notes</Nav>
-      <OuterForm onSubmit={handleSubmit}>
+      <OuterForm onSubmit="Update Here">
         <FormContent>
           {
             <ErrorMessage
