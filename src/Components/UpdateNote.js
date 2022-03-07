@@ -9,18 +9,21 @@ import { setNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 import Form from "./Form";
+import { current } from "immer";
 
 function UpdateNote(props) {
-  const [formData, setFormData] = useState({
-    name: "",
-    date: "",
-    note: "",
+  const notes = useSelector((state) => {
+    return state.noteReducer.value;
   });
 
-  let { id } = useParams();
+  const { id: paramsId } = useParams();
 
-  let notes = useSelector((state) => {
-    return state.noteReducer.value;
+  const prevNote = notes.find((n) => n.id === paramsId);
+
+  const [formData, setFormData] = useState({
+    name: prevNote.name,
+    date: prevNote.date,
+    note: prevNote.note,
   });
 
   const dispatch = useDispatch();
@@ -54,14 +57,6 @@ function UpdateNote(props) {
 
   return (
     <div>
-      {notes
-        .filter((n) => n.key === { id })
-        .map((note) => {
-          setFormData({ name: note.name });
-          setFormData({ date: note.date });
-          setFormData({ note: note.note });
-        })}
-
       <Nav link="/">View Notes</Nav>
       <OuterForm onSubmit={validateSubmit}>
         <FormContent>
