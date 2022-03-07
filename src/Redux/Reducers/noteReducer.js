@@ -13,8 +13,8 @@ export default function (state = initialState, action) {
       dataArray.push(action.value);
       return { ...state, value: dataArray };
     case actions.SORT_NOTE:
-      state.sorted = !state.sorted;
-      return state.sorted;
+      const sortedVal = state.sorted;
+      return { ...state, sorted: !sortedVal };
     default:
       return state;
   }

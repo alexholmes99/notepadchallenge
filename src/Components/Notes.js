@@ -8,24 +8,20 @@ function Notes() {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
-  const sortVal = useSelector((state) => {
+  const sorted = useSelector((state) => {
     return state.noteReducer.sorted;
   });
 
-  const [sorted, setSorted] = useState(false);
-
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   const sortNotes = (e) => {
     e.preventDefault();
-    setSorted(!sorted);
-    sortNote();
-    console.log(sortVal);
+    dispatch(sortNote());
   };
 
   const noteMap = () => {
     let sortedData = [...notes];
-    if (sortVal) {
+    if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
     }
     return sortedData.map((n) => {
@@ -59,7 +55,7 @@ function Notes() {
             background: "none",
           }}
         >
-          {sortVal ? "Undo" : "Sort Notes"}
+          {sorted ? "Undo" : "Sort Notes"}
         </Button>
       )}
 
