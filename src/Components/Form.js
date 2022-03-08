@@ -108,16 +108,7 @@ function Form(props) {
           />
         </FormContent>
         <FormContent>
-          <Button
-            type="Submit"
-            value="Submit"
-            cssOptions={{
-              border: "none",
-              opacity: "0.8",
-              color: "#e33d3d",
-              fontsize: "24px",
-            }}
-          >
+          <Button type="Submit" value="Submit" cssOptions={{}}>
             Submit
           </Button>
         </FormContent>
