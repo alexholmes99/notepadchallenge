@@ -7,6 +7,7 @@ import Nav from "./Nav";
 import { setNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
+import Theme from "./Themes";
 
 function Form(props) {
   const [formData, setFormData] = useState({
@@ -60,7 +61,7 @@ function Form(props) {
   };
 
   return (
-    <div>
+    <Theme>
       <Nav link="/">View Notes</Nav>
       <OuterForm onSubmit={handleSubmit}>
         <FormContent>
@@ -112,7 +113,7 @@ function Form(props) {
           </Button>
         </FormContent>
       </OuterForm>
-    </div>
+    </Theme>
   );
 }
 
@@ -131,8 +132,8 @@ const FormContent = styled.div`
 `;
 
 const ErrorMessage = styled.h2`
-  font-size: 18px;
-  font-family: "Sue Ellen Francisco", cursive;
-  color: #e33d3d;
+  font-size: ${(props) => props.theme.fontSize.error};
+  font-family: ${(props) => props.theme.font.notePad};
+  color: ${(props) => props.theme.colour.errorRed};
 `;
 export default Form;
