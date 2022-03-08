@@ -23,6 +23,7 @@ function Notes() {
   const removeNote = (noteId) => {
     console.log("Handler");
     dispatch(deleteNote(noteId));
+    alert("Note Deleted");
   };
 
   const noteMap = () => {
