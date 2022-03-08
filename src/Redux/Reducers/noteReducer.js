@@ -30,6 +30,15 @@ export default function (state = initialState, action) {
             : note
         ),
       };
+    case actions.DELETE_NOTE:
+      const dNote = state.value.find((note) => note.id === action.id);
+      const dIndex = state.value.indexOf(dNote);
+      const newArray = [...state.value];
+      newArray.splice(dIndex, 1);
+      return {
+        ...state,
+        value: newArray,
+      };
     default:
       return state;
   }

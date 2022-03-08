@@ -4,7 +4,11 @@ import styled from "styled-components";
 
 const Nav = (props) => {
   return (
-    <StyledNav to={props.link} cssoptions={props.cssOptions}>
+    <StyledNav
+      to={props.link}
+      onClick={props.onClick}
+      cssoptions={props.cssOptions}
+    >
       {props.children}
     </StyledNav>
   );

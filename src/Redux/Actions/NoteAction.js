@@ -19,3 +19,10 @@ export const updateNote = (newNote) => {
     newNote,
   };
 };
+
+export const deleteNote = (id) => {
+  return {
+    type: actionTypes.DELETE_NOTE,
+    id,
+  };
+};
