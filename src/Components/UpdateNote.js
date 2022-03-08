@@ -121,7 +121,7 @@ function UpdateNote(props) {
               fontsize: "24px",
             }}
           >
-            Submit
+            Update
           </Button>
         </FormContent>
       </OuterForm>

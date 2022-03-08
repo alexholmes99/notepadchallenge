@@ -16,15 +16,16 @@ export default function (state = initialState, action) {
       const sortedVal = state.sorted;
       return { ...state, sorted: !sortedVal };
     case actions.UPDATE_NOTE:
+      const newNote = action.newNote;
       return {
         ...state,
         value: state.value.map((note) =>
-          note.id === action.newNote.id
+          note.id === newNote.id
             ? {
                 ...note,
-                name: action.newNote.name,
-                date: action.newNote.date,
-                note: action.newNote.note,
+                name: newNote.name,
+                date: newNote.date,
+                note: newNote.note,
               }
             : note
         ),
