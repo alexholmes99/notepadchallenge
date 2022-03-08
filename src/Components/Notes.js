@@ -5,6 +5,7 @@ import { deleteNote } from "../Redux/Actions/NoteAction";
 import styled from "styled-components";
 import Button from "./Button";
 import Nav from "./Nav";
+import Theme from "./Themes";
 
 function Notes() {
   const notes = useSelector((state) => {
@@ -47,7 +48,7 @@ function Notes() {
   };
 
   return (
-    <div>
+    <Theme>
       <Nav link="/notes/new">Add Note</Nav>
       {notes.length === 0 ? (
         <NoNotes> Notes will be displayed here </NoNotes>
@@ -58,13 +59,9 @@ function Notes() {
           id="Sort"
           onClick={sortNotes}
           cssOptions={{
-            border: "none",
-            opacity: "0.8",
             textdecor: "underline",
-            fontsize: "24px",
             width: "10%",
             float: "left",
-            background: "none",
           }}
         >
           {sorted ? "Undo" : "Sort Notes"}
@@ -72,7 +69,7 @@ function Notes() {
       )}
 
       {noteMap()}
-    </div>
+    </Theme>
   );
 }
 const Update = styled(Nav)``;
@@ -122,8 +119,8 @@ const StickyNote = styled.div`
 
 const NoteName = styled.h1`
   font-weight: bold;
-  font-family: "Sue Ellen Francisco", cursive;
-  font-size: 35px;
+  font-family: ${(props) => props.theme.font.notePad};
+  font-size: ${(props) => props.theme.fontSize.input};
   text-decoration: underline;
   text-align: center;
   margin: 0;
@@ -132,14 +129,14 @@ const NoteName = styled.h1`
 const NoteDate = styled.h4`
   font-size: 16px;
   text-align: left;
-  font-family: "Sue Ellen Francisco", cursive;
+  font-family: ${(props) => props.theme.font.notePad};
   padding-left: 5px;
   padding-bottom: 0;
   margin: 0;
 `;
 
 const NoteContent = styled.p`
-  font-family: "Sue Ellen Francisco", cursive;
+  font-family: ${(props) => props.theme.font.notePad};
   font-size: 20px;
   margin: 0;
   flex-wrap: wrap;
@@ -153,13 +150,13 @@ const NoteContent = styled.p`
 
 const NoNotes = styled.h1`
   font-size: 28px;
-  font-family: "Sue Ellen Francisco", cursive;
+  font-family: ${(props) => props.theme.font.notePad};
   text-align: center;
 `;
 
 const Sort = styled(Button)`
   float: left;
-  font-size: 32px;
+  font-size: ${(props) => props.theme.fontSize.input};
 `;
 
 const NavLinks = styled.div`
