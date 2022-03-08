@@ -22,7 +22,7 @@ const StyledInput = styled.input`
   background-color: ${(props) => props.theme.colour.pageBG};
   opacity: 0.5;
   font-size: ${(props) => props.theme.fontSize.input};
-  font-family: "Sue Ellen Francisco", cursive;
+  font-family: ${(props) => props.theme.font.notePad};
   border: none;
 `;
 
