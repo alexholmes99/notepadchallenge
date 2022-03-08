@@ -13,16 +13,16 @@ export const sortNote = () => {
   };
 };
 
-export const updateNote = (newNote) => {
+export const updateNote = (value) => {
   return {
     type: actionTypes.UPDATE_NOTE,
-    newNote,
+    value,
   };
 };
 
-export const deleteNote = (id) => {
+export const deleteNote = (value) => {
   return {
     type: actionTypes.DELETE_NOTE,
-    id,
+    value,
   };
 };
