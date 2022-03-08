@@ -13,7 +13,7 @@ function UpdateNote(props) {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
-  console.log(notes);
+
   const { id: paramsId } = useParams();
 
   const prevNote = notes.find((n) => n.id === paramsId);
