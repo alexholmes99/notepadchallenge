@@ -1,8 +1,9 @@
 import { ThemeProvider } from "styled-components";
 
 const theme = {
-  color: {
+  colour: {
     errorRed: "#e33d3d",
+    pageBG: "#f5f4f2",
   },
   font: {
     notePad: '"Sue Ellen Francisco", cursive',
@@ -10,6 +11,7 @@ const theme = {
   fontSize: {
     button: "24px",
     error: "18px",
+    input: "35px",
   },
   button: {
     noBorder: "none",

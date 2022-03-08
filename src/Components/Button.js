@@ -21,7 +21,7 @@ function Button(props) {
 const StyledButton = styled.button`
   border: ${(props) => props.theme.button.noBorder};
   opacity: ${(props) => props.theme.button.mainOpacity};
-  color: ${(props) => props.theme.color.errorRed};
+  color: ${(props) => props.theme.colour.errorRed};
   font-size: ${(props) => props.theme.fontSize.button};
   font-family: ${(props) => props.theme.font.notePad};
 `;

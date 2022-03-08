@@ -1,23 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import Theme from "./Themes";
 
 function TextArea(props) {
   return (
-    <StyledText
-      name={props.name}
-      placeholder={props.placeholder}
-      value={props.value}
-      onChange={props.onChange}
-      onBlur={props.onBlur}
-    />
+    <Theme>
+      <StyledText
+        name={props.name}
+        placeholder={props.placeholder}
+        value={props.value}
+        onChange={props.onChange}
+        onBlur={props.onBlur}
+      />
+    </Theme>
   );
 }
 
 const StyledText = styled.textarea`
-  background-color: #f5f4f2;
+  background-color: ${(props) => props.theme.colour.pageBG};
   opacity: 0.5;
-  font-size: 35px;
-  font-family: "Sue Ellen Francisco", cursive;
+  font-size: ${(props) => props.theme.fontSize.input};
+  font-family: ${(props) => props.theme.font.notePad};
   border: none;
 `;
 

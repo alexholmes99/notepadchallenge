@@ -3,7 +3,6 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
 import Nav from "./Nav";
 import { setNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
