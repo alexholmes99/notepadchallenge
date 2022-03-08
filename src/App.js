@@ -1,5 +1,5 @@
 import React from "react";
-import Form from "./Components/Form";
+import NewNote from "./Components/NewNote";
 import Logo from "./Components/Logo";
 import Notes from "./Components/Notes";
 import { Provider } from "react-redux";
@@ -12,7 +12,7 @@ function App() {
       <Logo />
       <Routes>
         <Route path="/" element={<Notes />} />
-        <Route path="/notes/new" element={<Form />} />
+        <Route path="/notes/new" element={<NewNote />} />
         <Route path="/notes/update/:id" element={<UpdateNote />} />
       </Routes>
     </Provider>

@@ -9,7 +9,7 @@ import { setNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-function Form(props) {
+function NewNote(props) {
   const [formData, setFormData] = useState({
     name: "",
     date: "",
@@ -145,4 +145,4 @@ const ErrorMessage = styled.h2`
   font-family: "Sue Ellen Francisco", cursive;
   color: #e33d3d;
 `;
-export default Form;
+export default NewNote;
