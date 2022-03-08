@@ -13,10 +13,9 @@ export const sortNote = () => {
   };
 };
 
-export const updateNote = (id, name) => {
+export const updateNote = (newNote) => {
   return {
     type: actionTypes.UPDATE_NOTE,
-    id,
-    name,
+    newNote,
   };
 };

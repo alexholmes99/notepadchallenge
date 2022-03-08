@@ -57,7 +57,7 @@ function UpdateNote(props) {
     e.preventDefault();
     const emptyValues = validateSubmit();
     if (!emptyValues) {
-      dispatch(updateNote(formData.id, formData.name));
+      dispatch(updateNote(formData));
       alert("Note Updated");
     }
   };

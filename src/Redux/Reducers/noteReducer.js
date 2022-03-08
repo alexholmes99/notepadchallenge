@@ -19,10 +19,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         value: state.value.map((note) =>
-          note.id === action.id
+          note.id === action.newNote.id
             ? {
                 ...note,
-                name: action.name,
+                name: action.newNote.name,
+                date: action.newNote.date,
+                note: action.newNote.note,
               }
             : note
         ),
