@@ -7,7 +7,6 @@ import { useParams } from "react-router";
 import Nav from "./Nav";
 import { updateNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 
 function UpdateNote(props) {
   const notes = useSelector((state) => {
