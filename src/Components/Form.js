@@ -3,10 +3,11 @@ import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
 import Nav from "./Nav";
+import Theme from "./Themes";
 
 function Form(props) {
   return (
-    <div>
+    <Theme>
       <Nav link="/">View Notes</Nav>
       <OuterForm onSubmit={props.submit}>
         <FormContent>
@@ -18,6 +19,7 @@ function Form(props) {
           <Input
             type="text"
             name="name"
+            maxLength="10"
             value={props.formData.name}
             placeholder="Enter Your Name"
             onChange={(e) => props.handleChange(e, "name")}
@@ -49,6 +51,7 @@ function Form(props) {
             name="note"
             placeholder="Enter Note Here"
             value={props.formData.note}
+            maxLength="230"
             onChange={(e) => props.handleChange(e, "note")}
             onBlur={(e) => props.handleBlur("note")}
           />
@@ -68,7 +71,7 @@ function Form(props) {
           </Button>
         </FormContent>
       </OuterForm>
-    </div>
+    </Theme>
   );
 }
 
@@ -87,9 +90,9 @@ const FormContent = styled.div`
 `;
 
 const ErrorMessage = styled.h2`
-  font-size: 18px;
-  font-family: "Sue Ellen Francisco", cursive;
-  color: #e33d3d;
+  font-size: ${(props) => props.theme.fontSize.error};
+  font-family: ${(props) => props.theme.font.notePad};
+  color: ${(props) => props.theme.colour.errorRed};
 `;
 
 export default Form;

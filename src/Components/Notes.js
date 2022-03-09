@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sortNote, deleteNote } from "../Redux/Actions/NoteAction";
 import styled from "styled-components";
-import Button from "./Button";
 import Nav from "./Nav";
+import Theme from "./Themes";
 
 function Notes() {
   const notes = useSelector((state) => {
@@ -29,58 +29,50 @@ function Notes() {
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
     }
-    return sortedData.map((n) => {
-      return (
-        <StickyNote key={n.id}>
-          <Update link={`/notes/update/${n.id}`}>Update</Update>
-          <NoteDate>{n.date}</NoteDate>
-          <NoteName>{n.name}</NoteName>
-          <NoteContent>{n.note}</NoteContent>
-          <Delete preventDefault link="" onClick={() => removeNote(n.id)}>
-            Delete
-          </Delete>
-        </StickyNote>
-      );
-    });
+    return (
+      <NoteContainer>
+        {sortedData.map((n) => {
+          return (
+            <StickyNote key={n.id}>
+              <EditNote>
+                <Nav link={`/notes/update/${n.id}`}>Update</Nav>
+                <Nav preventDefault link="" onClick={() => removeNote(n.id)}>
+                  Delete
+                </Nav>
+              </EditNote>
+              <NoteDate>{n.date}</NoteDate>
+              <NoteName>{n.name}</NoteName>
+              <NoteContent>{n.note}</NoteContent>
+            </StickyNote>
+          );
+        })}
+        ;
+      </NoteContainer>
+    );
   };
 
   return (
-    <div>
+    <Theme>
       <Nav link="/notes/new">Add Note</Nav>
       {notes.length === 0 ? (
         <NoNotes> Notes will be displayed here </NoNotes>
       ) : (
-        <Button
-          type="Sort"
-          value="Sort"
-          id="Sort"
-          onClick={sortNotes}
-          cssOptions={{
-            border: "none",
-            opacity: "0.8",
-            textdecor: "underline",
-            fontsize: "24px",
-            width: "10%",
-            float: "left",
-            background: "none",
-          }}
-        >
+        <Nav preventDefault link="" onClick={sortNotes}>
           {sorted ? "Undo" : "Sort Notes"}
-        </Button>
+        </Nav>
       )}
 
       {noteMap()}
-    </div>
+    </Theme>
   );
 }
-const Update = styled(Nav)`
-  float: left;
-`;
-
-const Delete = styled(Nav)`
+const EditNote = styled.div`
   float: right;
 `;
 
+const NoteContainer = styled.div`
+  margin-left: 15%;
+`;
 const StickyNote = styled.div`
   float: left;
   display: flex;
@@ -122,8 +114,8 @@ const StickyNote = styled.div`
 
 const NoteName = styled.h1`
   font-weight: bold;
-  font-family: "Sue Ellen Francisco", cursive;
-  font-size: 35px;
+  font-family: ${(props) => props.theme.font.notePad};
+  font-size: ${(props) => props.theme.fontSize.input};
   text-decoration: underline;
   text-align: center;
   margin: 0;
@@ -132,17 +124,18 @@ const NoteName = styled.h1`
 const NoteDate = styled.h4`
   font-size: 16px;
   text-align: left;
-  font-family: "Sue Ellen Francisco", cursive;
+  font-family: ${(props) => props.theme.font.notePad};
   padding-left: 5px;
   padding-bottom: 0;
   margin: 0;
 `;
 
 const NoteContent = styled.p`
-  font-family: "Sue Ellen Francisco", cursive;
+  font-family: ${(props) => props.theme.font.notePad};
   font-size: 20px;
   margin: 0;
   flex-wrap: wrap;
+  text-align: center;
   justify-content: center;
   padding-left: 1em;
   padding-right: 1em;
@@ -153,16 +146,8 @@ const NoteContent = styled.p`
 
 const NoNotes = styled.h1`
   font-size: 28px;
-  font-family: "Sue Ellen Francisco", cursive;
+  font-family: ${(props) => props.theme.font.notePad};
   text-align: center;
 `;
 
-const Sort = styled(Button)`
-  float: left;
-  font-size: 32px;
-`;
-
-const NavLinks = styled.div`
-  display: inline;
-`;
 export default Notes;
