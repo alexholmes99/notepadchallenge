@@ -19,7 +19,9 @@ const Nav = (props) => {
 
 const StyledNav = styled(NavLink)`
   font-family: ${(props) => props.theme.font.notePad};
+  font-size: ${(props) => props.theme.fontSize};
   text-decoration: underline;
   color: black;
+  padding-right: 10px;
 `;
 export default Nav;

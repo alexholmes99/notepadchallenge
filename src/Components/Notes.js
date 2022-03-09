@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sortNote, deleteNote } from "../Redux/Actions/NoteAction";
 import styled from "styled-components";
-import Button from "./Button";
 import Nav from "./Nav";
 import Theme from "./Themes";
 
@@ -35,13 +34,15 @@ function Notes() {
         {sortedData.map((n) => {
           return (
             <StickyNote key={n.id}>
-              <Update link={`/notes/update/${n.id}`}>Update</Update>
+              <EditNote>
+                <Nav link={`/notes/update/${n.id}`}>Update</Nav>
+                <Nav preventDefault link="" onClick={() => removeNote(n.id)}>
+                  Delete
+                </Nav>
+              </EditNote>
               <NoteDate>{n.date}</NoteDate>
               <NoteName>{n.name}</NoteName>
               <NoteContent>{n.note}</NoteContent>
-              <Delete preventDefault link="" onClick={() => removeNote(n.id)}>
-                Delete
-              </Delete>
             </StickyNote>
           );
         })}
@@ -56,30 +57,16 @@ function Notes() {
       {notes.length === 0 ? (
         <NoNotes> Notes will be displayed here </NoNotes>
       ) : (
-        <Button
-          type="Sort"
-          value="Sort"
-          id="Sort"
-          onClick={sortNotes}
-          cssOptions={{
-            textdecor: "underline",
-            width: "10%",
-            float: "left",
-          }}
-        >
+        <Nav preventDefault link="" onClick={sortNotes}>
           {sorted ? "Undo" : "Sort Notes"}
-        </Button>
+        </Nav>
       )}
 
       {noteMap()}
     </Theme>
   );
 }
-const Update = styled(Nav)`
-  float: left;
-`;
-
-const Delete = styled(Nav)`
+const EditNote = styled.div`
   float: right;
 `;
 
@@ -148,6 +135,7 @@ const NoteContent = styled.p`
   font-size: 20px;
   margin: 0;
   flex-wrap: wrap;
+  text-align: center;
   justify-content: center;
   padding-left: 1em;
   padding-right: 1em;
@@ -162,12 +150,4 @@ const NoNotes = styled.h1`
   text-align: center;
 `;
 
-const Sort = styled(Button)`
-  float: left;
-  font-size: ${(props) => props.theme.fontSize.input};
-`;
-
-const NavLinks = styled.div`
-  display: inline;
-`;
 export default Notes;
