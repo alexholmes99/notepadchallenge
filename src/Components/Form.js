@@ -1,12 +1,8 @@
-import React, { useState, useRef } from "react";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
 import Nav from "./Nav";
-import { setNote } from "../Redux/Actions/NoteAction";
-import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 
 function Form(props) {
   return (
