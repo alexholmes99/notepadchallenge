@@ -30,19 +30,24 @@ function Notes() {
     if (sorted) {
       sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
     }
-    return sortedData.map((n) => {
-      return (
-        <StickyNote key={n.id}>
-          <Update link={`/notes/update/${n.id}`}>Update</Update>
-          <NoteDate>{n.date}</NoteDate>
-          <NoteName>{n.name}</NoteName>
-          <NoteContent>{n.note}</NoteContent>
-          <Delete preventDefault link="" onClick={() => removeNote(n.id)}>
-            Delete
-          </Delete>
-        </StickyNote>
-      );
-    });
+    return (
+      <NoteContainer>
+        {sortedData.map((n) => {
+          return (
+            <StickyNote key={n.id}>
+              <Update link={`/notes/update/${n.id}`}>Update</Update>
+              <NoteDate>{n.date}</NoteDate>
+              <NoteName>{n.name}</NoteName>
+              <NoteContent>{n.note}</NoteContent>
+              <Delete preventDefault link="" onClick={() => removeNote(n.id)}>
+                Delete
+              </Delete>
+            </StickyNote>
+          );
+        })}
+        ;
+      </NoteContainer>
+    );
   };
 
   return (
@@ -78,6 +83,9 @@ const Delete = styled(Nav)`
   float: right;
 `;
 
+const NoteContainer = styled.div`
+  margin-left: 15%;
+`;
 const StickyNote = styled.div`
   float: left;
   display: flex;
