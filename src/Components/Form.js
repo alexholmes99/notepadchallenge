@@ -1,110 +1,56 @@
-import React, { useState, useRef } from "react";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import Button from "./Button";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
 import Nav from "./Nav";
-import { setNote } from "../Redux/Actions/NoteAction";
-import { useSelector, useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
 
 function Form(props) {
-  const [formData, setFormData] = useState({
-    name: "",
-    date: "",
-    note: "",
-  });
-
-  let notes = useSelector((state) => {
-    return state.noteReducer.value;
-  });
-
-  const dispatch = useDispatch();
-
-  const emptyData = useRef({});
-
-  const handleChange = (e, key) => {
-    const newData = {
-      ...formData,
-      [key]: e.target.value,
-    };
-    setFormData(newData);
-  };
-
-  const handleBlur = (key) => {
-    if (key === "id") return;
-    emptyData.current[key].innerHTML =
-      formData[key] === "" ? `${key} required` : "";
-  };
-
-  const validateSubmit = (e) => {
-    let emptyValues = false;
-    Object.keys(formData).forEach((key) => {
-      handleBlur(key);
-      if (formData[key] == "") {
-        emptyValues = true;
-      }
-    });
-    return emptyValues;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const emptyValues = validateSubmit();
-    if (!emptyValues) {
-      const uniqueId = uuidv4();
-      const formDataCopy = { ...formData, id: uniqueId };
-      dispatch(setNote(formDataCopy));
-      alert("Note Created");
-    }
-  };
-
   return (
     <div>
       <Nav link="/">View Notes</Nav>
-      <OuterForm onSubmit={handleSubmit}>
+      <OuterForm onSubmit={props.submit}>
         <FormContent>
           {
             <ErrorMessage
-              ref={(element) => (emptyData.current["name"] = element)}
+              ref={(element) => (props.emptyData.current["name"] = element)}
             ></ErrorMessage>
           }
           <Input
             type="text"
             name="name"
+            value={props.formData.name}
             placeholder="Enter Your Name"
-            onChange={(e) => handleChange(e, "name")}
-            onBlur={(e) => handleBlur("name")}
+            onChange={(e) => props.handleChange(e, "name")}
+            onBlur={(e) => props.handleBlur("name")}
           />
         </FormContent>
         <FormContent>
           {
             <ErrorMessage
-              ref={(element) => (emptyData.current["date"] = element)}
+              ref={(element) => (props.emptyData.current["date"] = element)}
             ></ErrorMessage>
           }
           <Input
             type="date"
             name="date"
             placeholder=""
-            value={formData.date}
-            onChange={(e) => handleChange(e, "date")}
-            onBlur={(e) => handleBlur("date")}
+            value={props.formData.date}
+            onChange={(e) => props.handleChange(e, "date")}
+            onBlur={(e) => props.handleBlur("date")}
           />
         </FormContent>
         <FormContent>
           {
             <ErrorMessage
-              ref={(element) => (emptyData.current["note"] = element)}
+              ref={(element) => (props.emptyData.current["note"] = element)}
             ></ErrorMessage>
           }
           <TextArea
             name="note"
             placeholder="Enter Note Here"
-            value={formData.note}
-            onChange={(e) => handleChange(e, "note")}
-            onBlur={(e) => handleBlur("note")}
+            value={props.formData.note}
+            onChange={(e) => props.handleChange(e, "note")}
+            onBlur={(e) => props.handleBlur("note")}
           />
         </FormContent>
         <FormContent>
@@ -118,7 +64,7 @@ function Form(props) {
               fontsize: "24px",
             }}
           >
-            Submit
+            {props.button}
           </Button>
         </FormContent>
       </OuterForm>
@@ -145,4 +91,5 @@ const ErrorMessage = styled.h2`
   font-family: "Sue Ellen Francisco", cursive;
   color: #e33d3d;
 `;
+
 export default Form;

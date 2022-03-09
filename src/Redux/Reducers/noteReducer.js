@@ -15,6 +15,30 @@ export default function (state = initialState, action) {
     case actions.SORT_NOTE:
       const sortedVal = state.sorted;
       return { ...state, sorted: !sortedVal };
+    case actions.UPDATE_NOTE:
+      const updatedNote = action.value;
+      return {
+        ...state,
+        value: state.value.map((note) =>
+          note.id === updatedNote.id
+            ? {
+                ...note,
+                name: updatedNote.name,
+                date: updatedNote.date,
+                note: updatedNote.note,
+              }
+            : note
+        ),
+      };
+    case actions.DELETE_NOTE:
+      const deleteNote = state.value.find((note) => note.id === action.value);
+      const deleteIndex = state.value.indexOf(deleteNote);
+      const newArray = [...state.value];
+      newArray.splice(deleteIndex, 1);
+      return {
+        ...state,
+        value: newArray,
+      };
     default:
       return state;
   }

@@ -12,3 +12,17 @@ export const sortNote = () => {
     type: actionTypes.SORT_NOTE,
   };
 };
+
+export const updateNote = (value) => {
+  return {
+    type: actionTypes.UPDATE_NOTE,
+    value,
+  };
+};
+
+export const deleteNote = (value) => {
+  return {
+    type: actionTypes.DELETE_NOTE,
+    value,
+  };
+};

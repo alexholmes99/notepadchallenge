@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { sortNote } from "../Redux/Actions/NoteAction";
+import { sortNote, deleteNote } from "../Redux/Actions/NoteAction";
 import styled from "styled-components";
 import Button from "./Button";
 import Nav from "./Nav";
@@ -19,6 +19,10 @@ function Notes() {
     e.preventDefault();
     dispatch(sortNote());
   };
+  const removeNote = (noteId) => {
+    dispatch(deleteNote(noteId));
+    alert("Note Deleted");
+  };
 
   const noteMap = () => {
     let sortedData = [...notes];
@@ -28,9 +32,13 @@ function Notes() {
     return sortedData.map((n) => {
       return (
         <StickyNote key={n.id}>
+          <Update link={`/notes/update/${n.id}`}>Update</Update>
           <NoteDate>{n.date}</NoteDate>
           <NoteName>{n.name}</NoteName>
           <NoteContent>{n.note}</NoteContent>
+          <Delete preventDefault link="" onClick={() => removeNote(n.id)}>
+            Delete
+          </Delete>
         </StickyNote>
       );
     });
@@ -65,10 +73,14 @@ function Notes() {
     </div>
   );
 }
-const NoteContainer = styled.div`
-  margin-top: 11%;
-  margin-left: 18%;
+const Update = styled(Nav)`
+  float: left;
 `;
+
+const Delete = styled(Nav)`
+  float: right;
+`;
+
 const StickyNote = styled.div`
   float: left;
   display: flex;
