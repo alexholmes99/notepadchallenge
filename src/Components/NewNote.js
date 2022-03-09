@@ -11,10 +11,6 @@ function NewNote(props) {
     note: "",
   });
 
-  let notes = useSelector((state) => {
-    return state.noteReducer.value;
-  });
-
   const emptyData = useRef({});
 
   const dispatch = useDispatch();
@@ -37,7 +33,7 @@ function NewNote(props) {
     let emptyValues = false;
     Object.keys(formData).forEach((key) => {
       handleBlur(key);
-      if (formData[key] == "") {
+      if (formData[key] === "") {
         emptyValues = true;
       }
     });

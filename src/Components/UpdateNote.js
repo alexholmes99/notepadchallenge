@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import Form from "./Form";
-import styled from "styled-components";
 import { useParams } from "react-router";
 import { updateNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
