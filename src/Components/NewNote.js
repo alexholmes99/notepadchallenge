@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Form from "./Form";
 import { setNote } from "../Redux/Actions/NoteAction";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 function NewNote(props) {

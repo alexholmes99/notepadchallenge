@@ -42,7 +42,7 @@ function UpdateNote(props) {
     let emptyValues = false;
     Object.keys(formData).forEach((key) => {
       handleBlur(key);
-      if (formData[key] == "") {
+      if (formData[key] === "") {
         emptyValues = true;
       }
     });
