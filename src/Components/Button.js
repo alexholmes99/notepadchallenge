@@ -6,6 +6,7 @@ function Button(props) {
     <StyledButton
       type={props.type}
       value={props.value}
+      onChange={props.onChange}
       cssOptions={props.cssOptions}
       {...props}
     >
@@ -19,7 +20,11 @@ const StyledButton = styled.button`
   opacity: ${(props) => props.cssOptions.opacity};
   color: ${(props) => props.cssOptions.color};
   font-size: ${(props) => props.cssOptions.fontsize};
-  width: 100%;
+  display: ${(props) => props.cssOptions.display};
+  width: ${(props) => props.cssOptions.width};
+  float: ${(props) => props.cssOptions.float};
+  background: ${(props) => props.cssOptions.background};
   font-family: "Sue Ellen Francisco", cursive;
+  text-decoration: ${(props) => props.cssOptions.textdecor};
 `;
 export default Button;

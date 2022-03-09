@@ -1,25 +1,85 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sortNote, deleteNote } from "../Redux/Actions/NoteAction";
 import styled from "styled-components";
+import Button from "./Button";
+import Nav from "./Nav";
 
 function Notes() {
   const notes = useSelector((state) => {
     return state.noteReducer.value;
   });
+  const sorted = useSelector((state) => {
+    return state.noteReducer.sorted;
+  });
+
+  const dispatch = useDispatch();
+
+  const sortNotes = (e) => {
+    e.preventDefault();
+    dispatch(sortNote());
+  };
+  const removeNote = (noteId) => {
+    dispatch(deleteNote(noteId));
+    alert("Note Deleted");
+  };
+
+  const noteMap = () => {
+    let sortedData = [...notes];
+    if (sorted) {
+      sortedData = sortedData.sort((a, b) => (a.date > b.date ? 1 : -1));
+    }
+    return sortedData.map((n) => {
+      return (
+        <StickyNote key={n.id}>
+          <Update link={`/notes/update/${n.id}`}>Update</Update>
+          <NoteDate>{n.date}</NoteDate>
+          <NoteName>{n.name}</NoteName>
+          <NoteContent>{n.note}</NoteContent>
+          <Delete preventDefault link="" onClick={() => removeNote(n.id)}>
+            Delete
+          </Delete>
+        </StickyNote>
+      );
+    });
+  };
+
   return (
     <div>
-      {notes.map((n) => {
-        return (
-          <StickyNote>
-            <NoteDate>{n.date}</NoteDate>
-            <NoteName>{n.name}</NoteName>
-            <NoteContent>{n.note}</NoteContent>
-          </StickyNote>
-        );
-      })}
+      <Nav link="/notes/new">Add Note</Nav>
+      {notes.length === 0 ? (
+        <NoNotes> Notes will be displayed here </NoNotes>
+      ) : (
+        <Button
+          type="Sort"
+          value="Sort"
+          id="Sort"
+          onClick={sortNotes}
+          cssOptions={{
+            border: "none",
+            opacity: "0.8",
+            textdecor: "underline",
+            fontsize: "24px",
+            width: "10%",
+            float: "left",
+            background: "none",
+          }}
+        >
+          {sorted ? "Undo" : "Sort Notes"}
+        </Button>
+      )}
+
+      {noteMap()}
     </div>
   );
 }
+const Update = styled(Nav)`
+  float: left;
+`;
+
+const Delete = styled(Nav)`
+  float: right;
+`;
 
 const StickyNote = styled.div`
   float: left;
@@ -91,4 +151,18 @@ const NoteContent = styled.p`
   word-break: break-word;
 `;
 
+const NoNotes = styled.h1`
+  font-size: 28px;
+  font-family: "Sue Ellen Francisco", cursive;
+  text-align: center;
+`;
+
+const Sort = styled(Button)`
+  float: left;
+  font-size: 32px;
+`;
+
+const NavLinks = styled.div`
+  display: inline;
+`;
 export default Notes;
