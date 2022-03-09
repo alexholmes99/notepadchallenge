@@ -46,7 +46,6 @@ function Notes() {
             </StickyNote>
           );
         })}
-        ;
       </NoteContainer>
     );
   };
