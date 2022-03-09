@@ -62,6 +62,7 @@ function NewNote(props) {
       handleBlur={handleBlur}
       formData={formData}
       emptyData={emptyData}
+      button="Submit"
     />
   );
 }

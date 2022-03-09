@@ -64,7 +64,7 @@ function Form(props) {
               fontsize: "24px",
             }}
           >
-            Submit
+            {props.button}
           </Button>
         </FormContent>
       </OuterForm>
