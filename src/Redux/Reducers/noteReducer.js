@@ -3,12 +3,6 @@ import * as actions from "../Actions/NoteActionTypes";
 export const initialState = {
   value: [], //state array
   sorted: false,
-  note: {
-    name: "",
-    date: "",
-    note: "",
-    id: "",
-  },
 };
 
 export default function (state = initialState, action) {
@@ -45,8 +39,6 @@ export default function (state = initialState, action) {
         ...state,
         value: newArray,
       };
-    case actions.NOTE_VALUES:
-      return { ...state, note: state.note };
     default:
       return state;
   }
