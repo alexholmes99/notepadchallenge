@@ -12,12 +12,15 @@ function Input(props) {
         placeholder={props.placeholder}
         onChange={props.onChange}
         onBlur={props.onBlur}
+        maxLength={props.maxLength}
+        {...props}
       />
     </Theme>
   );
 }
 
 const StyledInput = styled.input`
+  size: 10;
   margin-top: 2%;
   background-color: ${(props) => props.theme.colour.pageBG};
   opacity: 0.5;

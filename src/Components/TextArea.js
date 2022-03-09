@@ -11,6 +11,7 @@ function TextArea(props) {
         value={props.value}
         onChange={props.onChange}
         onBlur={props.onBlur}
+        maxLength={props.maxLength}
       />
     </Theme>
   );

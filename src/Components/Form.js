@@ -19,6 +19,7 @@ function Form(props) {
           <Input
             type="text"
             name="name"
+            maxLength="10"
             value={props.formData.name}
             placeholder="Enter Your Name"
             onChange={(e) => props.handleChange(e, "name")}
@@ -50,6 +51,7 @@ function Form(props) {
             name="note"
             placeholder="Enter Note Here"
             value={props.formData.note}
+            maxLength="230"
             onChange={(e) => props.handleChange(e, "note")}
             onBlur={(e) => props.handleBlur("note")}
           />
