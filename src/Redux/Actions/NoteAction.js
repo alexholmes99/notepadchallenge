@@ -9,7 +9,7 @@ export const setNote = (value) => {
 
 export const sortNote = () => {
   return {
-    type: actionTypes.SORT_NOTE,
+    type: actionTypes.SORT_NOTES,
   };
 };
 

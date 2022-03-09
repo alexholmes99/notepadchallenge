@@ -12,7 +12,7 @@ export default function (state = initialState, action) {
       const dataArray = [...existingData];
       dataArray.push(action.value);
       return { ...state, value: dataArray };
-    case actions.SORT_NOTE:
+    case actions.SORT_NOTES:
       const sortedVal = state.sorted;
       return { ...state, sorted: !sortedVal };
     case actions.UPDATE_NOTE:
