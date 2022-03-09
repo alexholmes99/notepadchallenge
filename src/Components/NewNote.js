@@ -1,29 +1,23 @@
 import React, { useState, useRef } from "react";
 import Form from "./Form";
-import styled from "styled-components";
-import { useParams } from "react-router";
-import { updateNote } from "../Redux/Actions/NoteAction";
+import { setNote } from "../Redux/Actions/NoteAction";
 import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
 
-function UpdateNote(props) {
-  const notes = useSelector((state) => {
+function NewNote(props) {
+  const [formData, setFormData] = useState({
+    name: "",
+    date: "",
+    note: "",
+  });
+
+  let notes = useSelector((state) => {
     return state.noteReducer.value;
   });
 
-  const { id: paramsId } = useParams();
-
-  const prevNote = notes.find((n) => n.id === paramsId);
-
-  const [formData, setFormData] = useState({
-    name: prevNote.name,
-    date: prevNote.date,
-    note: prevNote.note,
-    id: prevNote.id,
-  });
+  const emptyData = useRef({});
 
   const dispatch = useDispatch();
-
-  const emptyData = useRef({});
 
   const handleChange = (e, key) => {
     const newData = {
@@ -49,12 +43,15 @@ function UpdateNote(props) {
     });
     return emptyValues;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const emptyValues = validateSubmit();
     if (!emptyValues) {
-      dispatch(updateNote(formData));
-      alert("Note Updated");
+      const uniqueId = uuidv4();
+      const formDataCopy = { ...formData, id: uniqueId };
+      dispatch(setNote(formDataCopy));
+      alert("Note Created");
     }
   };
 
@@ -65,8 +62,8 @@ function UpdateNote(props) {
       handleBlur={handleBlur}
       formData={formData}
       emptyData={emptyData}
-      button="Update"
+      button="Submit"
     />
   );
 }
-export default UpdateNote;
+export default NewNote;
